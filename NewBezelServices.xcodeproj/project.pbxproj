@@ -1,0 +1,553 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B811D5471E62093D00AE6D3D /* WindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B811D5461E62093D00AE6D3D /* WindowDelegate.m */; };
+		B884E65B1B4C08B900972348 /* NSAppSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = B884E65A1B4C08B900972348 /* NSAppSubclass.m */; };
+		B8852F721B49713D00069BE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F711B49713D00069BE8 /* AppDelegate.m */; };
+		B8852F751B49713D00069BE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F741B49713D00069BE8 /* main.m */; };
+		B8852F771B49713D00069BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8852F761B49713D00069BE8 /* Assets.xcassets */; };
+		B8852F7A1B49713D00069BE8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8852F781B49713D00069BE8 /* MainMenu.xib */; };
+		B8852F851B49713D00069BE8 /* NewBezelServicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */; };
+		B8852F901B49713D00069BE8 /* NewBezelServicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */; };
+		B887FCE11DCCC5E70099CB79 /* VolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B887FCE01DCCC5E70099CB79 /* VolumeControl.m */; };
+		B887FCE41DCCCEAA0099CB79 /* BrightnessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B887FCE31DCCCEAA0099CB79 /* BrightnessControl.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8852F811B49713D00069BE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8852F651B49713D00069BE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8852F6C1B49713D00069BE8;
+			remoteInfo = NewBezelServices;
+		};
+		B8852F8C1B49713D00069BE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8852F651B49713D00069BE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8852F6C1B49713D00069BE8;
+			remoteInfo = NewBezelServices;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B811D5451E62093D00AE6D3D /* WindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowDelegate.h; sourceTree = "<group>"; };
+		B811D5461E62093D00AE6D3D /* WindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowDelegate.m; sourceTree = "<group>"; };
+		B86CF44E1DCE30470081087F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B884E6591B4C08B900972348 /* NSAppSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAppSubclass.h; sourceTree = "<group>"; };
+		B884E65A1B4C08B900972348 /* NSAppSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAppSubclass.m; sourceTree = "<group>"; };
+		B8852F6D1B49713D00069BE8 /* NewBezelServices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewBezelServices.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8852F701B49713D00069BE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B8852F711B49713D00069BE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B8852F741B49713D00069BE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B8852F761B49713D00069BE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B8852F7B1B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewBezelServicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewBezelServicesTests.m; sourceTree = "<group>"; };
+		B8852F861B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewBezelServicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewBezelServicesUITests.m; sourceTree = "<group>"; };
+		B8852F911B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B887FCDF1DCCC5E70099CB79 /* VolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeControl.h; sourceTree = "<group>"; };
+		B887FCE01DCCC5E70099CB79 /* VolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeControl.m; sourceTree = "<group>"; };
+		B887FCE21DCCCEAA0099CB79 /* BrightnessControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessControl.h; sourceTree = "<group>"; };
+		B887FCE31DCCCEAA0099CB79 /* BrightnessControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessControl.m; sourceTree = "<group>"; };
+		B8B48E0C1DCE453C00297A41 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8852F6A1B49713D00069BE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F7D1B49713D00069BE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F881B49713D00069BE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B86CF44D1DCE30470081087F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B86CF44E1DCE30470081087F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8852F641B49713D00069BE8 = {
+			isa = PBXGroup;
+			children = (
+				B8852F6F1B49713D00069BE8 /* NewBezelServices */,
+				B8852F831B49713D00069BE8 /* NewBezelServicesTests */,
+				B8852F8E1B49713D00069BE8 /* NewBezelServicesUITests */,
+				B8852F6E1B49713D00069BE8 /* Products */,
+				B86CF44D1DCE30470081087F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B8852F6E1B49713D00069BE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8852F6D1B49713D00069BE8 /* NewBezelServices.app */,
+				B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */,
+				B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8852F6F1B49713D00069BE8 /* NewBezelServices */ = {
+			isa = PBXGroup;
+			children = (
+				B8852F701B49713D00069BE8 /* AppDelegate.h */,
+				B8852F711B49713D00069BE8 /* AppDelegate.m */,
+				B811D5451E62093D00AE6D3D /* WindowDelegate.h */,
+				B811D5461E62093D00AE6D3D /* WindowDelegate.m */,
+				B884E6591B4C08B900972348 /* NSAppSubclass.h */,
+				B884E65A1B4C08B900972348 /* NSAppSubclass.m */,
+				B887FCDF1DCCC5E70099CB79 /* VolumeControl.h */,
+				B887FCE01DCCC5E70099CB79 /* VolumeControl.m */,
+				B887FCE21DCCCEAA0099CB79 /* BrightnessControl.h */,
+				B887FCE31DCCCEAA0099CB79 /* BrightnessControl.m */,
+				B8852F781B49713D00069BE8 /* MainMenu.xib */,
+				B8852F731B49713D00069BE8 /* Supporting Files */,
+			);
+			path = NewBezelServices;
+			sourceTree = "<group>";
+		};
+		B8852F731B49713D00069BE8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8852F761B49713D00069BE8 /* Assets.xcassets */,
+				B8852F7B1B49713D00069BE8 /* Info.plist */,
+				B8852F741B49713D00069BE8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8852F831B49713D00069BE8 /* NewBezelServicesTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */,
+				B8852F861B49713D00069BE8 /* Info.plist */,
+			);
+			path = NewBezelServicesTests;
+			sourceTree = "<group>";
+		};
+		B8852F8E1B49713D00069BE8 /* NewBezelServicesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */,
+				B8852F911B49713D00069BE8 /* Info.plist */,
+			);
+			path = NewBezelServicesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B8852F6C1B49713D00069BE8 /* NewBezelServices */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8852F941B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServices" */;
+			buildPhases = (
+				B8852F691B49713D00069BE8 /* Sources */,
+				B8852F6A1B49713D00069BE8 /* Frameworks */,
+				B8852F6B1B49713D00069BE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewBezelServices;
+			productName = NewBezelServices;
+			productReference = B8852F6D1B49713D00069BE8 /* NewBezelServices.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8852F7F1B49713D00069BE8 /* NewBezelServicesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8852F971B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesTests" */;
+			buildPhases = (
+				B8852F7C1B49713D00069BE8 /* Sources */,
+				B8852F7D1B49713D00069BE8 /* Frameworks */,
+				B8852F7E1B49713D00069BE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8852F821B49713D00069BE8 /* PBXTargetDependency */,
+			);
+			name = NewBezelServicesTests;
+			productName = NewBezelServicesTests;
+			productReference = B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B8852F8A1B49713D00069BE8 /* NewBezelServicesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8852F9A1B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesUITests" */;
+			buildPhases = (
+				B8852F871B49713D00069BE8 /* Sources */,
+				B8852F881B49713D00069BE8 /* Frameworks */,
+				B8852F891B49713D00069BE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8852F8D1B49713D00069BE8 /* PBXTargetDependency */,
+			);
+			name = NewBezelServicesUITests;
+			productName = NewBezelServicesUITests;
+			productReference = B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8852F651B49713D00069BE8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = OSXHackers;
+				TargetAttributes = {
+					B8852F6C1B49713D00069BE8 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					B8852F7F1B49713D00069BE8 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = B8852F6C1B49713D00069BE8;
+					};
+					B8852F8A1B49713D00069BE8 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = B8852F6C1B49713D00069BE8;
+					};
+				};
+			};
+			buildConfigurationList = B8852F681B49713D00069BE8 /* Build configuration list for PBXProject "NewBezelServices" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B8852F641B49713D00069BE8;
+			productRefGroup = B8852F6E1B49713D00069BE8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8852F6C1B49713D00069BE8 /* NewBezelServices */,
+				B8852F7F1B49713D00069BE8 /* NewBezelServicesTests */,
+				B8852F8A1B49713D00069BE8 /* NewBezelServicesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8852F6B1B49713D00069BE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8852F771B49713D00069BE8 /* Assets.xcassets in Resources */,
+				B8852F7A1B49713D00069BE8 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F7E1B49713D00069BE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F891B49713D00069BE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8852F691B49713D00069BE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B811D5471E62093D00AE6D3D /* WindowDelegate.m in Sources */,
+				B884E65B1B4C08B900972348 /* NSAppSubclass.m in Sources */,
+				B8852F751B49713D00069BE8 /* main.m in Sources */,
+				B8852F721B49713D00069BE8 /* AppDelegate.m in Sources */,
+				B887FCE41DCCCEAA0099CB79 /* BrightnessControl.m in Sources */,
+				B887FCE11DCCC5E70099CB79 /* VolumeControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F7C1B49713D00069BE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8852F851B49713D00069BE8 /* NewBezelServicesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8852F871B49713D00069BE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8852F901B49713D00069BE8 /* NewBezelServicesUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8852F821B49713D00069BE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8852F6C1B49713D00069BE8 /* NewBezelServices */;
+			targetProxy = B8852F811B49713D00069BE8 /* PBXContainerItemProxy */;
+		};
+		B8852F8D1B49713D00069BE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8852F6C1B49713D00069BE8 /* NewBezelServices */;
+			targetProxy = B8852F8C1B49713D00069BE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B8852F781B49713D00069BE8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8B48E0C1DCE453C00297A41 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B8852F921B49713D00069BE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B8852F931B49713D00069BE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B8852F951B49713D00069BE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServices/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B8852F961B49713D00069BE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServices/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B8852F981B49713D00069BE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServicesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewBezelServices.app/Contents/MacOS/NewBezelServices";
+			};
+			name = Debug;
+		};
+		B8852F991B49713D00069BE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServicesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewBezelServices.app/Contents/MacOS/NewBezelServices";
+			};
+			name = Release;
+		};
+		B8852F9B1B49713D00069BE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServicesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewBezelServices;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		B8852F9C1B49713D00069BE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NewBezelServicesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewBezelServices;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8852F681B49713D00069BE8 /* Build configuration list for PBXProject "NewBezelServices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8852F921B49713D00069BE8 /* Debug */,
+				B8852F931B49713D00069BE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8852F941B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8852F951B49713D00069BE8 /* Debug */,
+				B8852F961B49713D00069BE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8852F971B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8852F981B49713D00069BE8 /* Debug */,
+				B8852F991B49713D00069BE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8852F9A1B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8852F9B1B49713D00069BE8 /* Debug */,
+				B8852F9C1B49713D00069BE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8852F651B49713D00069BE8 /* Project object */;
+}
