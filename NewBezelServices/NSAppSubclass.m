@@ -27,7 +27,8 @@
         BOOL modPressed = [self doesModPressedWithMFlags:mflags];
         
         // Process the media key event and return
-        if (!modPressed || keyCode != NX_KEYTYPE_EJECT) [self mediaKeyEvent:keyCode state:keyState];
+        if (!modPressed || keyCode != NX_KEYTYPE_EJECT)
+            [self mediaKeyEvent:keyCode state:keyState];
         return;
     }
     // Continue on to super
@@ -36,10 +37,11 @@
 
 - (BOOL)doesModPressedWithMFlags:(int)mflags {
     
-    int mainModsFlags[5] = {0, 262145, 524576, 1048584, 131330};
-    short mainModsFlagsCount = sizeof(mainModsFlags)/sizeof(int);
-    short numberOfOperations = (mainModsFlagsCount-2)*(mainModsFlagsCount-1);
+    const int mainModsFlags[] = {0, 262145, 524576, 1048584, 131330};
+    const short mainModsFlagsCount = sizeof(mainModsFlags)/sizeof(int);
+    const short numberOfOperations = (mainModsFlagsCount-2)*(mainModsFlagsCount-1);
     int additionalModsFlags[numberOfOperations];
+
     for (short i = 1; i < numberOfOperations+1; i++) {
         short mID = 0;
         short sID = 1;
@@ -63,7 +65,6 @@
 
 - (void)mediaKeyEvent:(int)key state:(BOOL)state {
     AppDelegate *apd = (AppDelegate *)[self delegate];
-    BrightnessControl *brightc = [[BrightnessControl alloc] init];
     short keyTypeInt = 0;
     BOOL eslider = YES;
     NSString *textStringVal = @"...";
@@ -83,12 +84,6 @@
             textStringVal = @"Ejecting...";
             break;
     }
-    if (keyTypeInt == 0 && round(2.0f * ([brightc getBrightnessLevel]*100) / 2.0f) != currBrightLevel) {
-        NSLog(@"brightness change detected when pressing a non-brightness control bt!");
-        NSLog(@"getBrightness = %f", [self getBrightnessLevel]);
-        NSLog(@"currBrightLevel = %f", currBrightLevel);
-        keyTypeInt = 2;
-    }
     if (keyTypeInt > 0) {
         usleep(200);
         [apd updateProgressWithType:types[keyTypeInt-1]];
@@ -97,10 +92,10 @@
     }
 }
 
-- (float)getBrightnessLevel {
+/*- (float)getBrightnessLevel {
     BrightnessControl *brightc = [[BrightnessControl alloc] init];
     float brightLevel = [brightc getBrightnessLevel];
     return brightLevel;
-}
+}*/
 
 @end

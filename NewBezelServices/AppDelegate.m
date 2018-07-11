@@ -53,8 +53,6 @@ BOOL previousThemeState;
     
     NSTimer *showInitWindowTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(showInitWindow) userInfo:nil repeats:NO];
     
-    currBrightLevel = round(2.0f * ([brightc getBrightnessLevel]*100) / 2.0f);
-    
     types[0] = @"volume";
     types[1] = @"brightness";
     types[2] = @"eject";
