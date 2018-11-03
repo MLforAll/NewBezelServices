@@ -39,7 +39,7 @@
     
     return outputDeviceID;
 }
-- (float)getVolumeLevel {
++ (float)getVolumeLevel {
     
     Float32 outputVolume;
     
@@ -50,7 +50,7 @@
     propertyAOPA.mSelector = kAudioHardwareServiceDeviceProperty_VirtualMasterVolume;
     propertyAOPA.mScope = kAudioDevicePropertyScopeOutput;
     
-    AudioDeviceID outputDeviceID = [[self class] defaultOutputDeviceID];
+    AudioDeviceID outputDeviceID = [self defaultOutputDeviceID];
     
     if (outputDeviceID == kAudioObjectUnknown) {
         NSLog(@"Unknown device");
@@ -75,7 +75,7 @@
     
     return outputVolume;
 }
-- (bool)isAudioMuted {
++ (bool)isAudioMuted {
     UInt32 mute;
     UInt32 propertySize = 0;
     OSStatus status = noErr;
@@ -83,7 +83,7 @@
     propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
     propertyAOPA.mSelector = kAudioDevicePropertyMute;
     propertyAOPA.mScope = kAudioDevicePropertyScopeOutput;
-    AudioDeviceID outputDeviceID = [[self class] defaultOutputDeviceID];
+    AudioDeviceID outputDeviceID = [self defaultOutputDeviceID];
     if (outputDeviceID == kAudioObjectUnknown)
     {
         NSLog(@"Unknown device");
@@ -103,13 +103,13 @@
     }
     return mute;
 }
-- (void)setMuted:(BOOL)state { // Couldn't find a way to do it in ObjC. Ended up embeding AppleScript. Works like a charm!
++ (void)setMuted:(BOOL)state { // Couldn't find a way to do it in ObjC. Ended up embeding AppleScript. Works like a charm!
     NSString *stateCodeStr;
     if (state) stateCodeStr = @"with"; else stateCodeStr = @"without";
     NSAppleScript *asCode = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"set volume %@ output muted", stateCodeStr]];
     [asCode executeAndReturnError:nil];
 }
-- (void)setVolumeLevel:(Float32)level {
++ (void)setVolumeLevel:(Float32)level {
     if ([self isAudioMuted] && level > 0) [self setMuted:NO]; else if (![self isAudioMuted] && level == 0) [self setMuted:YES];
     AudioObjectPropertyAddress propertyAddress = {
         kAudioHardwareServiceDeviceProperty_VirtualMasterVolume,

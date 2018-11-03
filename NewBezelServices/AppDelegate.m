@@ -15,9 +15,6 @@
 
 @implementation AppDelegate
 
-VolumeControl *volc;
-BrightnessControl *brightc;
-
 float heightDiffWindow = 45;
 
 NSString *types[3];
@@ -25,8 +22,6 @@ NSTimer *closeWindowTimer;
 
 NSString *volumeSoundPath = @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff";
 NSString *imagesPath;
-
-float currBrightLevel;
 
 NSDictionary *bezelImages = nil;
 BOOL previousThemeState;
@@ -42,10 +37,8 @@ BOOL previousThemeState;
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    volc = (VolumeControl *)[[VolumeControl alloc] init];
-    brightc = (BrightnessControl *)[[BrightnessControl alloc] init];
-    
     //[_window setDelegate:(WindowDelegate *)[[WindowDelegate alloc] init]];
+    [_window setCanBecomeVisibleWithoutLogin:YES];
     [_window setLevel:kCGMaximumWindowLevel];
     [_window setMovable:NO];
     [_slider setDoubleValue:0];
@@ -200,7 +193,7 @@ NSString *currImgName;
     NSString *imageName;
     switch (typeInt) {
         case 1:
-            if (![volc isAudioMuted]) imageName = @"Volume.pdf"; else imageName = @"Mute.pdf";
+            if (![VolumeControl isAudioMuted]) imageName = @"Volume.pdf"; else imageName = @"Mute.pdf";
             break;
         case 2:
             imageName = @"Brightness.pdf";
@@ -224,15 +217,14 @@ NSString *currImgName;
     }
 }
 - (void)updateProgressVolume {
-    bool muteState = [volc isAudioMuted];
+    bool muteState = [VolumeControl isAudioMuted];
     float level;
-    if (muteState) level = 0; else level = [volc getVolumeLevel]*100;
+    if (muteState) level = 0; else level = [VolumeControl getVolumeLevel]*100;
     [_slider setDoubleValue:level];
 }
 - (void)updateProgressBrightness {
-    float currLevel = [brightc getBrightnessLevel]*100;
+    float currLevel = [BrightnessControl getBrightnessLevel]*100;
     [_slider setDoubleValue:currLevel];
-    currBrightLevel = round(2.0f * currLevel / 2.0f);
 }
 
 - (IBAction)sliderAction:(id)sender {
@@ -263,16 +255,16 @@ NSString *currImgName;
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     if (event.type == NSLeftMouseUp) [[[NSSound alloc] initWithContentsOfFile:volumeSoundPath byReference:YES] play];
     
-    bool refMuteState = [volc isAudioMuted];
+    bool refMuteState = [VolumeControl isAudioMuted];
     
     Float32 currSliderVolumeEquivalent = sdv/100;
-    [volc setVolumeLevel:currSliderVolumeEquivalent];
-    if (refMuteState != [volc isAudioMuted]) [self updateImageWithType:@"volume"];
+    [VolumeControl setVolumeLevel:currSliderVolumeEquivalent];
+    if (refMuteState != [VolumeControl isAudioMuted]) [self updateImageWithType:@"volume"];
     
 }
 - (void)setProgressBrightnessWithSliderDoubleValue:(NSNumber *)sdvobj {
     double sdv = [sdvobj doubleValue];
-    [brightc setBrightnessLevel:sdv/100];
+    [BrightnessControl setBrightnessLevel:sdv/100];
 }
 
 @end

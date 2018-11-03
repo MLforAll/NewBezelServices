@@ -10,7 +10,7 @@
 
 @interface BrightnessControl : NSObject
 
-- (float)getBrightnessLevel;
-- (void)setBrightnessLevel:(float)level;
++ (float)getBrightnessLevel;
++ (void)setBrightnessLevel:(float)level;
 
 @end

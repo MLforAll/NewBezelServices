@@ -15,7 +15,7 @@
 const int kMaxDisplays = 16;
 const CFStringRef kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
 
-- (float)getBrightnessLevel {
++ (float)getBrightnessLevel {
     CGDirectDisplayID display[kMaxDisplays];
     CGDisplayCount numDisplays;
     CGDisplayErr err;
@@ -27,9 +27,10 @@ const CFStringRef kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
     for (CGDisplayCount i = 0; i < numDisplays; ++i) {
         
         CGDirectDisplayID dspy = display[i];
-        CFDictionaryRef originalMode = CGDisplayCurrentMode(dspy);
+        CGDisplayModeRef originalMode = CGDisplayCopyDisplayMode(dspy);
         if (originalMode == NULL)
             continue;
+        CGDisplayModeRelease(originalMode);
         io_service_t service = CGDisplayIOServicePort(dspy);
         
         float brightness;
@@ -46,7 +47,7 @@ const CFStringRef kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
     return -1.0; //couldn't get brightness for any display
 }
 
-- (void)setBrightnessLevel:(float)level {
++ (void)setBrightnessLevel:(float)level {
     CGDirectDisplayID display[kMaxDisplays];
     CGDisplayCount numDisplays;
     CGDisplayErr err;
@@ -58,9 +59,10 @@ const CFStringRef kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
     for (CGDisplayCount i = 0; i < numDisplays; ++i) {
         
         CGDirectDisplayID dspy = display[i];
-        CFDictionaryRef originalMode = CGDisplayCurrentMode(dspy);
+        CGDisplayModeRef originalMode = CGDisplayCopyDisplayMode(dspy);
         if (originalMode == NULL)
             continue;
+        CGDisplayModeRelease(originalMode);
         io_service_t service = CGDisplayIOServicePort(dspy);
         
         float brightness;

@@ -28,6 +28,4 @@ extern NSString *imagesPath;
 
 extern NSTimer *closeWindowTimer;
 
-extern float currBrightLevel;
-
 @end
