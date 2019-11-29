@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13122.17" systemVersion="17A315i" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner">
@@ -13,15 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSAppSubclass"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
-            <connections>
-                <outlet property="image" destination="F59-qK-J86" id="JBq-ws-ec2"/>
-                <outlet property="slider" destination="dBl-h7-zwy" id="Suh-8x-Hhb"/>
-                <outlet property="tabView" destination="Msa-Mo-o9z" id="8SJ-ba-hlf"/>
-                <outlet property="text" destination="nxR-fg-Ogx" id="lHZ-wX-r2H"/>
-                <outlet property="window" destination="xGm-XV-neU" id="w9S-Ib-bRZ"/>
-            </connections>
-        </customObject>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -39,65 +30,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="139" y="154"/>
         </menu>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="xGm-XV-neU" customClass="NSPanel">
-            <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES"/>
-            <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" stationary="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="33" y="790" width="286" height="58"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <view key="contentView" misplaced="YES" id="lCY-CZ-wVq">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="58"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <tabView misplaced="YES" drawsBackground="NO" type="noTabsNoBorder" initialItem="6Tx-oL-zxt" id="Msa-Mo-o9z">
-                        <rect key="frame" x="58" y="0.0" width="228" height="58"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <font key="font" metaFont="system"/>
-                        <tabViewItems>
-                            <tabViewItem label="Slider" identifier="1" id="brt-me-n8o">
-                                <view key="view" id="eR1-Dd-UYI">
-                                    <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="dBl-h7-zwy">
-                                            <rect key="frame" x="-2" y="21" width="212" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="yXm-bw-aXI"/>
-                                            <connections>
-                                                <action selector="sliderAction:" target="Voe-Tx-rLC" id="ehn-AU-zHj"/>
-                                            </connections>
-                                        </slider>
-                                    </subviews>
-                                </view>
-                            </tabViewItem>
-                            <tabViewItem label="Text" identifier="2" id="6Tx-oL-zxt">
-                                <view key="view" id="dh2-S0-mHA">
-                                    <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="nxR-fg-Ogx">
-                                            <rect key="frame" x="-2" y="19" width="212" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="HHP-7w-xdD">
-                                                <font key="font" metaFont="system" size="18"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                            </tabViewItem>
-                        </tabViewItems>
-                    </tabView>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="F59-qK-J86">
-                        <rect key="frame" x="0.0" y="-5" width="60" height="66"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="pqM-5D-dtZ"/>
-                    </imageView>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="589" y="236"/>
-        </window>
     </objects>
 </document>

@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HUDWindowController;
+
 @interface NSAppSubclass : NSApplication
+
+@property (readwrite) HUDWindowController *hudCtrl;
 
 @end

@@ -7,11 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "NSAppSubclass.h"
 #import "VolumeControl.h"
 #import "BrightnessControl.h"
 #import <CoreImage/CoreImage.h>
 #import "NSStatusBarWindow.h"
-#import "WindowDelegate.h"
 
 @implementation AppDelegate
 
@@ -26,26 +26,8 @@ NSString *imagesPath;
 NSDictionary *bezelImages = nil;
 BOOL previousThemeState;
 
-- (void)showInitWindow {
-    [self setHUDpos];
-    [_text setStringValue:@"Init..."];
-    [_tabView selectLastTabViewItem:nil];
-    [_window makeKeyAndOrderFront:nil];
-}
-- (void)setHUDTVFirstTVI {
-    [_tabView selectFirstTabViewItem:nil];
-}
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
-    //[_window setDelegate:(WindowDelegate *)[[WindowDelegate alloc] init]];
-    [_window setCanBecomeVisibleWithoutLogin:YES];
-    [_window setLevel:kCGMaximumWindowLevel];
-    [_window setMovable:NO];
-    [_slider setDoubleValue:0];
-    [_text setTextColor:[NSColor whiteColor]];
-    
-    NSTimer *showInitWindowTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(showInitWindow) userInfo:nil repeats:NO];
-    
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     types[0] = @"volume";
     types[1] = @"brightness";
     types[2] = @"eject";
@@ -56,29 +38,10 @@ BOOL previousThemeState;
         imagesPath = elcap_earlier_imagespath;
     else
         imagesPath = sierra_later_imagespath;
-    
-    NSInteger productVersionInt = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
-    
-    if (productVersionInt <= 9) {
         
-        [_window setStyleMask:NSHUDWindowMask];
-        
-    } else if (productVersionInt >= 10) {
-        
-        [_window setStyleMask:NSUtilityWindowMask];
-        NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, _window.frame.size.width, _window.frame.size.height)];
-        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-        [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
-        [vibrant setState:NSVisualEffectStateActive];
-        [_window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
-    }
-    
-    [self adaptUI];
-    if ([showInitWindowTimer isValid]) [showInitWindowTimer invalidate];
-    if ([_window isVisible]) [_window close];
-    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(setHUDTVFirstTVI) userInfo:nil repeats:NO];
-    if (productVersionInt >= 10) [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
+    hudCtrl = [[HUDWindowController alloc] initWithWindowNibName:@"HUDWindow"];
+    [hudCtrl loadWindow];
+    [(NSAppSubclass *)NSApp setHudCtrl:hudCtrl];
 }
 
 - (BOOL)isDarkModeEnabled {

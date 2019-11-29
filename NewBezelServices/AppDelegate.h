@@ -7,8 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HUDWindowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
+{
+    HUDWindowController *hudCtrl;
+}
 
 @property (assign) IBOutlet NSPanel *window;
 @property (unsafe_unretained) IBOutlet NSTabView *tabView;
