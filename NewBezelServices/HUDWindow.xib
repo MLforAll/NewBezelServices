@@ -8,55 +8,54 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HUDWindowController">
             <connections>
-                <outlet property="image" destination="fhx-SB-Hmd" id="R8f-6b-zvp"/>
-                <outlet property="slider" destination="v1r-sQ-cye" id="iLB-R8-Waq"/>
-                <outlet property="tabView" destination="rnA-V8-tlh" id="YZf-So-l3t"/>
-                <outlet property="text" destination="DOb-4m-j41" id="LFA-Pe-31X"/>
-                <outlet property="window" destination="bGT-Y4-VTc" id="1om-s9-o8F"/>
+                <outlet property="image" destination="NUi-iG-lDv" id="5Cd-M9-sTA"/>
+                <outlet property="slider" destination="Co4-dI-24N" id="ffZ-2e-8L6"/>
+                <outlet property="tabView" destination="K77-Yl-xQv" id="sU1-Is-SWD"/>
+                <outlet property="text" destination="Xxv-n0-FNY" id="udo-la-xiB"/>
+                <outlet property="window" destination="6sC-Mk-lSW" id="wCk-yG-U68"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="bGT-Y4-VTc" customClass="NSPanel">
-            <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="6sC-Mk-lSW">
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" stationary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="33" y="790" width="286" height="58"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <view key="contentView" id="JYE-yL-mxN">
+            <rect key="contentRect" x="121" y="123" width="286" height="58"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <view key="contentView" id="ehv-gB-q4f">
                 <rect key="frame" x="0.0" y="0.0" width="286" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" initialItem="Ved-vZ-i1T" translatesAutoresizingMaskIntoConstraints="NO" id="rnA-V8-tlh">
+                    <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" initialItem="0DE-Gm-KwM" translatesAutoresizingMaskIntoConstraints="NO" id="K77-Yl-xQv">
                         <rect key="frame" x="58" y="0.0" width="228" height="58"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="Slider" identifier="1" id="Hjr-8r-SUv">
-                                <view key="view" ambiguous="YES" id="6CC-mq-Ucm">
+                            <tabViewItem label="Slider" identifier="1" id="0DE-Gm-KwM">
+                                <view key="view" ambiguous="YES" id="7Jq-fg-tFR">
                                     <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v1r-sQ-cye">
+                                        <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Co4-dI-24N">
                                             <rect key="frame" x="-2" y="21" width="212" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nSQ-wa-efq"/>
+                                            <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="uvR-aN-Qnx"/>
                                             <connections>
-                                                <action selector="sliderAction:" target="-2" id="105-3a-lkR"/>
+                                                <action selector="sliderAction:" target="-2" id="X6p-SP-p2F"/>
                                             </connections>
                                         </slider>
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Text" identifier="2" id="Ved-vZ-i1T">
-                                <view key="view" id="xOB-ZC-mJW">
+                            <tabViewItem label="Text" identifier="2" id="Y3T-hJ-dDg">
+                                <view key="view" id="NGN-Or-Hks">
                                     <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOb-4m-j41">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxv-n0-FNY">
                                             <rect key="frame" x="-2" y="19" width="212" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="M2l-sl-d1X">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="IFM-b6-4Zd">
                                                 <font key="font" metaFont="system" size="18"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -67,17 +66,14 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-SB-Hmd">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-iG-lDv">
                         <rect key="frame" x="-3" y="-3" width="64" height="59"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Volume" id="hnd-KQ-BKu"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Volume" id="i0n-ek-IiP"/>
                     </imageView>
                 </subviews>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="z9G-CX-Q18"/>
-            </connections>
-            <point key="canvasLocation" x="589" y="236"/>
+            <point key="canvasLocation" x="111" y="-75"/>
         </window>
     </objects>
     <resources>

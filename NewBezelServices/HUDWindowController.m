@@ -228,17 +228,15 @@ static BOOL isDarkModeEnabled(void)
         imagesPath = elcap_earlier_imagespath;
     else
         imagesPath = sierra_later_imagespath;
-    
+
     [self.window setCanBecomeVisibleWithoutLogin:YES];
     [self.window setLevel:kCGMaximumWindowLevel];
     [self.window setMovable:NO];
     [_slider setDoubleValue:0];
     [_text setTextColor:[NSColor whiteColor]];
-    
+
     if (@available(macOS 10.10, *))
     {
-        [self.window setStyleMask:NSWindowStyleMaskUtilityWindow];
-
         NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
         [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
@@ -250,8 +248,8 @@ static BOOL isDarkModeEnabled(void)
         [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
     }
     else
-        [self.window setStyleMask:NSWindowStyleMaskHUDWindow];
-    
+        [self.window setBackgroundColor:[NSColor blackColor]];
+
     previousThemeState = isDarkModeEnabled();
     [self adaptUI];
 
