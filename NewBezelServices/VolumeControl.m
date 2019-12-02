@@ -7,7 +7,6 @@
 //
 
 #import "VolumeControl.h"
-#import "AppDelegate.h"
 #import <AppKit/NSEvent.h>
 #import <AudioToolbox/AudioServices.h>
 
@@ -122,8 +121,6 @@
                                         NULL,
                                         sizeof(Float32),
                                         &level);
-    
-    [(AppDelegate *)[[NSApplication sharedApplication] delegate] launchHUDcloseTimerWithTime:2.5];
 }
 
 @end

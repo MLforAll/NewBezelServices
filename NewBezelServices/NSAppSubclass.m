@@ -14,42 +14,44 @@
 
 - (void)mediaKeyEvent:(int)key state:(BOOL)state
 {
-    short keyTypeInt = 0;
+    bezel_action_t keyAction = kBezelActionUndef;
     BOOL eslider = YES;
-    NSString *textStringVal = @"...";
-    switch (key) {
+    NSString *textStringVal = nil;
+
+    switch (key)
+    {
         case NX_KEYTYPE_SOUND_UP:
         case NX_KEYTYPE_SOUND_DOWN:
         case NX_KEYTYPE_MUTE:
-            keyTypeInt = 1;
+            keyAction = kBezelActionVolume;
             break;
         case NX_KEYTYPE_BRIGHTNESS_UP:
         case NX_KEYTYPE_BRIGHTNESS_DOWN:
-            keyTypeInt = 2;
+            keyAction = kBezelActionBrightness;
             break;
         case NX_KEYTYPE_EJECT:
-            keyTypeInt = 3;
+            keyAction = kBezelActionEject;
             eslider = NO;
             textStringVal = @"Ejecting...";
             break;
+        default:
+            break ;
     }
-    if (keyTypeInt > 0) {
-        /*usleep(200);
-        [apd updateProgressWithType:types[keyTypeInt-1]];
-        [apd updateImageWithType:types[keyTypeInt-1]];
-        if (state) [apd showHUDwithType:types[keyTypeInt-1] enableSlider:eslider textStringValue:textStringVal];*/
-        [_hudCtrl showWindow:nil];
-    }
+    if (keyAction == kBezelActionUndef)
+        return ;
+
+    //usleep(100);
+    [_hudCtrl showHUDForAction:keyAction enableSlider:eslider textStringValue:textStringVal];
 }
 
 - (void)sendEvent:(NSEvent *)event
 {
     // Catch media key events
-    if ([event type] == NSEventTypeSystemDefined && [event subtype] == 8)
+    if (event.type == NSEventTypeSystemDefined && event.subtype == NSEventSubtypeScreenChanged)
     {
         int keyCode = (([event data1] & 0xFFFF0000) >> 16);
         int keyFlags = ([event data1] & 0x0000FFFF);
-        int keyState = (((keyFlags & 0xFF00) >> 8)) == 0xA;
+        BOOL keyState = (((keyFlags & 0xFF00) >> 8)) == 0xA;
 
         // Process the media key event and return
         if (event.modifierFlags == 0 || keyCode != NX_KEYTYPE_EJECT)

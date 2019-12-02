@@ -8,6 +8,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HUDWindowController">
             <connections>
+                <outlet property="image" destination="fhx-SB-Hmd" id="R8f-6b-zvp"/>
+                <outlet property="slider" destination="v1r-sQ-cye" id="iLB-R8-Waq"/>
+                <outlet property="tabView" destination="rnA-V8-tlh" id="YZf-So-l3t"/>
+                <outlet property="text" destination="DOb-4m-j41" id="LFA-Pe-31X"/>
                 <outlet property="window" destination="bGT-Y4-VTc" id="1om-s9-o8F"/>
             </connections>
         </customObject>
@@ -18,7 +22,7 @@
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" stationary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="33" y="790" width="286" height="58"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="JYE-yL-mxN">
                 <rect key="frame" x="0.0" y="0.0" width="286" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -29,7 +33,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Slider" identifier="1" id="Hjr-8r-SUv">
-                                <view key="view" id="6CC-mq-Ucm">
+                                <view key="view" ambiguous="YES" id="6CC-mq-Ucm">
                                     <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -37,12 +41,15 @@
                                             <rect key="frame" x="-2" y="21" width="212" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nSQ-wa-efq"/>
+                                            <connections>
+                                                <action selector="sliderAction:" target="-2" id="105-3a-lkR"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Text" identifier="2" id="Ved-vZ-i1T">
-                                <view key="view" ambiguous="YES" id="xOB-ZC-mJW">
+                                <view key="view" id="xOB-ZC-mJW">
                                     <rect key="frame" x="0.0" y="0.0" width="228" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -61,7 +68,7 @@
                         </tabViewItems>
                     </tabView>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-SB-Hmd">
-                        <rect key="frame" x="0.0" y="-5" width="60" height="66"/>
+                        <rect key="frame" x="-3" y="-3" width="64" height="59"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Volume" id="hnd-KQ-BKu"/>
                     </imageView>

@@ -20,16 +20,4 @@
 @property (unsafe_unretained) IBOutlet NSTextField *text;
 @property (assign) IBOutlet NSImageView *image;
 
-- (void)showHUDwithType:(NSString *)type enableSlider:(BOOL)eslider textStringValue:(NSString *)tsval;
-- (void)launchHUDcloseTimerWithTime:(float)time;
-- (void)updateProgressWithType:(NSString *)type;
-- (void)updateImageWithType:(NSString *)type;
-
-extern NSString *types[3];
-extern NSTimer *closeWindowTimer;
-extern NSString *volumeSoundPath;
-extern NSString *imagesPath;
-
-extern NSTimer *closeWindowTimer;
-
 @end

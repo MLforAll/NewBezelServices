@@ -15,28 +15,10 @@
 		B8852F751B49713D00069BE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F741B49713D00069BE8 /* main.m */; };
 		B8852F771B49713D00069BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8852F761B49713D00069BE8 /* Assets.xcassets */; };
 		B8852F7A1B49713D00069BE8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8852F781B49713D00069BE8 /* MainMenu.xib */; };
-		B8852F851B49713D00069BE8 /* NewBezelServicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */; };
-		B8852F901B49713D00069BE8 /* NewBezelServicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */; };
 		B887FCE11DCCC5E70099CB79 /* VolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B887FCE01DCCC5E70099CB79 /* VolumeControl.m */; };
 		B887FCE41DCCCEAA0099CB79 /* BrightnessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B887FCE31DCCCEAA0099CB79 /* BrightnessControl.m */; };
+		B8F9368F2395521D0099685E /* NSImage+ColorInvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F9368E2395521D0099685E /* NSImage+ColorInvert.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B8852F811B49713D00069BE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8852F651B49713D00069BE8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8852F6C1B49713D00069BE8;
-			remoteInfo = NewBezelServices;
-		};
-		B8852F8C1B49713D00069BE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8852F651B49713D00069BE8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8852F6C1B49713D00069BE8;
-			remoteInfo = NewBezelServices;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B869F21023918EEC00E6A81C /* HUDWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindowController.h; sourceTree = "<group>"; };
@@ -53,34 +35,16 @@
 		B8852F741B49713D00069BE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8852F761B49713D00069BE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8852F7B1B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewBezelServicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewBezelServicesTests.m; sourceTree = "<group>"; };
-		B8852F861B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewBezelServicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewBezelServicesUITests.m; sourceTree = "<group>"; };
-		B8852F911B49713D00069BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B887FCDF1DCCC5E70099CB79 /* VolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeControl.h; sourceTree = "<group>"; };
 		B887FCE01DCCC5E70099CB79 /* VolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeControl.m; sourceTree = "<group>"; };
 		B887FCE21DCCCEAA0099CB79 /* BrightnessControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessControl.h; sourceTree = "<group>"; };
 		B887FCE31DCCCEAA0099CB79 /* BrightnessControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessControl.m; sourceTree = "<group>"; };
+		B8F9368D2395521D0099685E /* NSImage+ColorInvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+ColorInvert.h"; sourceTree = "<group>"; };
+		B8F9368E2395521D0099685E /* NSImage+ColorInvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+ColorInvert.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B8852F6A1B49713D00069BE8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8852F7D1B49713D00069BE8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8852F881B49713D00069BE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,6 +57,8 @@
 		B869F21723918FDB00E6A81C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B8F9368D2395521D0099685E /* NSImage+ColorInvert.h */,
+				B8F9368E2395521D0099685E /* NSImage+ColorInvert.m */,
 				B887FCDF1DCCC5E70099CB79 /* VolumeControl.h */,
 				B887FCE01DCCC5E70099CB79 /* VolumeControl.m */,
 				B887FCE21DCCCEAA0099CB79 /* BrightnessControl.h */,
@@ -113,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				B8852F6F1B49713D00069BE8 /* NewBezelServices */,
-				B8852F831B49713D00069BE8 /* NewBezelServicesTests */,
-				B8852F8E1B49713D00069BE8 /* NewBezelServicesUITests */,
 				B8852F6E1B49713D00069BE8 /* Products */,
 				B86CF44D1DCE30470081087F /* Frameworks */,
 			);
@@ -124,8 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				B8852F6D1B49713D00069BE8 /* NewBezelServices.app */,
-				B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */,
-				B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,15 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				B869F21523918F4D00E6A81C /* Volume.pdf */,
-				B8852F701B49713D00069BE8 /* AppDelegate.h */,
-				B8852F711B49713D00069BE8 /* AppDelegate.m */,
-				B884E6591B4C08B900972348 /* NSAppSubclass.h */,
-				B884E65A1B4C08B900972348 /* NSAppSubclass.m */,
-				B869F21023918EEC00E6A81C /* HUDWindowController.h */,
-				B869F21123918EEC00E6A81C /* HUDWindowController.m */,
-				B869F21223918EEC00E6A81C /* HUDWindow.xib */,
-				B869F21723918FDB00E6A81C /* Helpers */,
-				B8852F781B49713D00069BE8 /* MainMenu.xib */,
+				B8F93691239555EA0099685E /* Code */,
+				B8F93690239555E10099685E /* UI */,
 				B8852F731B49713D00069BE8 /* Supporting Files */,
 			);
 			path = NewBezelServices;
@@ -158,22 +113,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B8852F831B49713D00069BE8 /* NewBezelServicesTests */ = {
+		B8F93690239555E10099685E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B8852F841B49713D00069BE8 /* NewBezelServicesTests.m */,
-				B8852F861B49713D00069BE8 /* Info.plist */,
+				B869F21223918EEC00E6A81C /* HUDWindow.xib */,
+				B8852F781B49713D00069BE8 /* MainMenu.xib */,
 			);
-			path = NewBezelServicesTests;
+			name = UI;
 			sourceTree = "<group>";
 		};
-		B8852F8E1B49713D00069BE8 /* NewBezelServicesUITests */ = {
+		B8F93691239555EA0099685E /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				B8852F8F1B49713D00069BE8 /* NewBezelServicesUITests.m */,
-				B8852F911B49713D00069BE8 /* Info.plist */,
+				B8852F701B49713D00069BE8 /* AppDelegate.h */,
+				B8852F711B49713D00069BE8 /* AppDelegate.m */,
+				B884E6591B4C08B900972348 /* NSAppSubclass.h */,
+				B884E65A1B4C08B900972348 /* NSAppSubclass.m */,
+				B869F21023918EEC00E6A81C /* HUDWindowController.h */,
+				B869F21123918EEC00E6A81C /* HUDWindowController.m */,
+				B869F21723918FDB00E6A81C /* Helpers */,
 			);
-			path = NewBezelServicesUITests;
+			name = Code;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,42 +156,6 @@
 			productReference = B8852F6D1B49713D00069BE8 /* NewBezelServices.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8852F7F1B49713D00069BE8 /* NewBezelServicesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B8852F971B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesTests" */;
-			buildPhases = (
-				B8852F7C1B49713D00069BE8 /* Sources */,
-				B8852F7D1B49713D00069BE8 /* Frameworks */,
-				B8852F7E1B49713D00069BE8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B8852F821B49713D00069BE8 /* PBXTargetDependency */,
-			);
-			name = NewBezelServicesTests;
-			productName = NewBezelServicesTests;
-			productReference = B8852F801B49713D00069BE8 /* NewBezelServicesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B8852F8A1B49713D00069BE8 /* NewBezelServicesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B8852F9A1B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesUITests" */;
-			buildPhases = (
-				B8852F871B49713D00069BE8 /* Sources */,
-				B8852F881B49713D00069BE8 /* Frameworks */,
-				B8852F891B49713D00069BE8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B8852F8D1B49713D00069BE8 /* PBXTargetDependency */,
-			);
-			name = NewBezelServicesUITests;
-			productName = NewBezelServicesUITests;
-			productReference = B8852F8B1B49713D00069BE8 /* NewBezelServicesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -243,14 +167,6 @@
 				TargetAttributes = {
 					B8852F6C1B49713D00069BE8 = {
 						CreatedOnToolsVersion = 7.0;
-					};
-					B8852F7F1B49713D00069BE8 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = B8852F6C1B49713D00069BE8;
-					};
-					B8852F8A1B49713D00069BE8 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = B8852F6C1B49713D00069BE8;
 					};
 				};
 			};
@@ -267,8 +183,6 @@
 			projectRoot = "";
 			targets = (
 				B8852F6C1B49713D00069BE8 /* NewBezelServices */,
-				B8852F7F1B49713D00069BE8 /* NewBezelServicesTests */,
-				B8852F8A1B49713D00069BE8 /* NewBezelServicesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,20 +199,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8852F7E1B49713D00069BE8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8852F891B49713D00069BE8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -310,41 +210,13 @@
 				B884E65B1B4C08B900972348 /* NSAppSubclass.m in Sources */,
 				B8852F751B49713D00069BE8 /* main.m in Sources */,
 				B8852F721B49713D00069BE8 /* AppDelegate.m in Sources */,
+				B8F9368F2395521D0099685E /* NSImage+ColorInvert.m in Sources */,
 				B887FCE41DCCCEAA0099CB79 /* BrightnessControl.m in Sources */,
 				B887FCE11DCCC5E70099CB79 /* VolumeControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8852F7C1B49713D00069BE8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B8852F851B49713D00069BE8 /* NewBezelServicesTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8852F871B49713D00069BE8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B8852F901B49713D00069BE8 /* NewBezelServicesUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B8852F821B49713D00069BE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8852F6C1B49713D00069BE8 /* NewBezelServices */;
-			targetProxy = B8852F811B49713D00069BE8 /* PBXContainerItemProxy */;
-		};
-		B8852F8D1B49713D00069BE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8852F6C1B49713D00069BE8 /* NewBezelServices */;
-			targetProxy = B8852F8C1B49713D00069BE8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B8852F781B49713D00069BE8 /* MainMenu.xib */ = {
@@ -489,58 +361,6 @@
 			};
 			name = Release;
 		};
-		B8852F981B49713D00069BE8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = NewBezelServicesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewBezelServices.app/Contents/MacOS/NewBezelServices";
-			};
-			name = Debug;
-		};
-		B8852F991B49713D00069BE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = NewBezelServicesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewBezelServices.app/Contents/MacOS/NewBezelServices";
-			};
-			name = Release;
-		};
-		B8852F9B1B49713D00069BE8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = NewBezelServicesUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = NewBezelServices;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		B8852F9C1B49713D00069BE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = NewBezelServicesUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServicesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = NewBezelServices;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -558,24 +378,6 @@
 			buildConfigurations = (
 				B8852F951B49713D00069BE8 /* Debug */,
 				B8852F961B49713D00069BE8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B8852F971B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B8852F981B49713D00069BE8 /* Debug */,
-				B8852F991B49713D00069BE8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B8852F9A1B49713D00069BE8 /* Build configuration list for PBXNativeTarget "NewBezelServicesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B8852F9B1B49713D00069BE8 /* Debug */,
-				B8852F9C1B49713D00069BE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

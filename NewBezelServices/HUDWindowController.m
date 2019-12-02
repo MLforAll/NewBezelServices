@@ -7,14 +7,144 @@
 //
 
 #import "HUDWindowController.h"
+#import "VolumeControl.h"
+#import "BrightnessControl.h"
+#import "NSImage+ColorInvert.h"
 
 #define kDefaultVolumeSoundPath @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"
 #define kHUDHorizontalBias  330
 #define kHUDVerticalBias    45
 
+#pragma mark - Functions
+
+static BOOL isDarkModeEnabled(void)
+{
+    NSDictionary *udsDict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
+    NSString *style = [udsDict valueForKey:@"AppleInterfaceStyle"];
+    return (style && [[style lowercaseString] isEqualToString:@"dark"]);
+}
+
+#pragma mark -
+
 @implementation HUDWindowController
 
-- (void)setHUDpos
+#pragma mark Theme Switch
+
+- (void)adaptUI
+{
+    BOOL themeState = isDarkModeEnabled();
+
+    if (bezelImages && themeState == previousThemeState)
+        return ;
+
+    previousThemeState = themeState;
+
+    NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
+    if (_visualEffectView)
+        [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
+
+    NSArray *imagePathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagesPath error:nil];
+
+    NSMutableArray *hudImagesFilenames = [NSMutableArray new];
+    for (NSString *filename in imagePathContents)
+        if ([filename hasSuffix:@".pdf"])
+            [hudImagesFilenames addObject:filename];
+
+    NSMutableArray *dictNSImages = [NSMutableArray new];
+    for (NSString *filename in hudImagesFilenames)
+    {
+        NSImage *hudImg = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", imagesPath, filename]];
+        if (themeState)
+            hudImg = [hudImg imageByInvertingColors];
+        NSColor *textColor = (themeState) ? [NSColor whiteColor] : [NSColor blackColor];
+
+        [_text setTextColor:textColor];
+        [dictNSImages addObject:hudImg];
+    }
+
+    bezelImages = [NSDictionary dictionaryWithObjects:dictNSImages forKeys:hudImagesFilenames];
+    [_image setImage:[bezelImages valueForKey:currImgName]];
+}
+
+#pragma mark - Set HUD
+
+- (void)updateImageForAction:(bezel_action_t)action muted:(BOOL)muted
+{
+    NSString *imageName;
+
+    switch (action)
+    {
+        case kBezelActionVolume:
+            imageName = muted ? @"Mute.pdf" : @"Volume.pdf";
+            break ;
+        case kBezelActionBrightness:
+            imageName = @"Brightness.pdf";
+            break ;
+        case kBezelActionEject:
+            imageName = @"Eject.pdf";
+            break ;
+        default:
+            break ;
+    }
+
+    if (currImgName != imageName)
+        [_image setImage:[bezelImages valueForKey:imageName]];
+    currImgName = imageName;
+}
+
+- (void)updateProgressVolume:(BOOL)muted
+{
+    float level = (muted) ? 0 : [VolumeControl getVolumeLevel] * 100;
+    [_slider setDoubleValue:(double)level];
+}
+- (void)updateProgressBrightness
+{
+    float currLevel = [BrightnessControl getBrightnessLevel] * 100;
+    [_slider setDoubleValue:(double)currLevel];
+}
+
+#pragma mark - HUD Interaction
+
+- (void)setProgressVolumeWithSliderDoubleValue:(double)sdv
+{
+    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
+    if (event.type == NSLeftMouseUp)
+        [volumeSound play];
+
+    Float32 currSliderVolumeEquivalent = sdv / 100.0f;
+    [VolumeControl setVolumeLevel:currSliderVolumeEquivalent];
+    [self updateImageForAction:kBezelActionVolume muted:[VolumeControl isAudioMuted]];
+    
+}
+
+- (IBAction)sliderAction:(id)sender
+{
+    assert(sender != nil);
+
+    if ([closeWindowTimer isValid])
+        [closeWindowTimer invalidate];
+
+    bezel_action_t action = (bezel_action_t)[sender tag];
+    double sliderdv = [sender doubleValue];
+
+    switch (action)
+    {
+        case kBezelActionVolume:
+            [self setProgressVolumeWithSliderDoubleValue:sliderdv];
+            break ;
+        case kBezelActionBrightness:
+            [BrightnessControl setBrightnessLevel:sliderdv / 100];
+            break ;
+        default:
+            break ;
+    }
+
+    [self scheduleCloseTimerWithInterval:2.5];
+}
+
+#pragma mark - Open & Close
+
+- (void)showWindow:(id)sender
 {
     NSScreen *mouseScreen;
     NSPoint mouseLoc = [NSEvent mouseLocation];
@@ -31,17 +161,54 @@
      dockHeight += menuBarHeight;
      heightDiffWindow -= menuBarHeight;
      }*/
-    
+
     NSPoint pt = NSMakePoint(mouseScreenVisibleRect.origin.x + kHUDHorizontalBias, mouseScreen.frame.origin.y + mouseScreenRect.size.height - self.window.frame.size.height - kHUDVerticalBias);
 
     [self.window setFrameOrigin:pt];
-}
 
-- (void)showWindow:(id)sender
-{
-    [self setHUDpos];
     [super showWindow:sender];
 }
+
+- (void)scheduleCloseTimerWithInterval:(NSTimeInterval)interval
+{
+    closeWindowTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(close) userInfo:nil repeats:NO];
+}
+
+- (void)showHUDForAction:(bezel_action_t)action enableSlider:(BOOL)eslider textStringValue:(NSString * __nullable)tsval
+{
+    if (closeWindowTimer.isValid)
+        [closeWindowTimer invalidate];
+
+    if (eslider)
+        [_tabView selectFirstTabViewItem:nil];
+    else
+    {
+        if (tsval)
+            [_text setStringValue:tsval];
+        [_tabView selectLastTabViewItem:nil];
+    }
+    [_slider setTag:(NSInteger)action];
+
+    BOOL muted = NO;
+    switch (action)
+    {
+        case kBezelActionVolume:
+            muted = [VolumeControl isAudioMuted];
+            [self updateProgressVolume:muted];
+            break ;
+        case kBezelActionBrightness:
+            [self updateProgressBrightness];
+            break ;
+        default:
+            break ;
+    }
+    [self updateImageForAction:action muted:muted];
+
+    [self showWindow:nil];
+    [self scheduleCloseTimerWithInterval:2];
+}
+
+#pragma mark - Properties
 
 - (void)setVolumeSoundPath:(NSString * __nullable)volumeSoundPath
 {
@@ -49,10 +216,19 @@
     volumeSound = [[NSSound alloc] initWithContentsOfFile:_volumeSoundPath byReference:YES];
 }
 
+#pragma mark - Init
+
 - (void)loadWindow
 {
     [super loadWindow];
 
+    NSString *elcap_earlier_imagespath = @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/BezelUI/HiDPI";
+    NSString *sierra_later_imagespath = @"/System/Library/CoreServices/OSDUIHelper.app/Contents/Resources";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:elcap_earlier_imagespath])
+        imagesPath = elcap_earlier_imagespath;
+    else
+        imagesPath = sierra_later_imagespath;
+    
     [self.window setCanBecomeVisibleWithoutLogin:YES];
     [self.window setLevel:kCGMaximumWindowLevel];
     [self.window setMovable:NO];
@@ -62,16 +238,22 @@
     if (@available(macOS 10.10, *))
     {
         [self.window setStyleMask:NSWindowStyleMaskUtilityWindow];
+
         NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
         [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
         [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
         [vibrant setState:NSVisualEffectStateActive];
         [self.window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
-        //[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
+
+        _visualEffectView = vibrant;
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
     }
     else
         [self.window setStyleMask:NSWindowStyleMaskHUDWindow];
+    
+    previousThemeState = isDarkModeEnabled();
+    [self adaptUI];
 
     [self setVolumeSoundPath:nil]; // set default value
 }
