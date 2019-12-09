@@ -10,8 +10,9 @@
 
 @interface VolumeControl : NSObject
 
-+ (float)getVolumeLevel;
-+ (bool)isAudioMuted;
+@property (readonly, class, getter=getVolumeLevel) float volumeLevel;
+@property (readonly, class, getter=isAudioMuted) BOOL muted;
+
 + (void)setMuted:(BOOL)state;
 + (void)setVolumeLevel:(Float32)level;
 

@@ -12,10 +12,10 @@
 
 @implementation VolumeControl
 
-+ (AudioDeviceID)defaultOutputDeviceID {
-    
++ (AudioDeviceID)defaultOutputDeviceID
+{
     AudioDeviceID outputDeviceID = kAudioObjectUnknown;
-    
+
     // get output device device
     UInt32 propertySize = 0;
     OSStatus status = noErr;
@@ -23,58 +23,65 @@
     propertyAOPA.mScope = kAudioObjectPropertyScopeGlobal;
     propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
     propertyAOPA.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
-    
-    if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA)) {
+
+    if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA))
+    {
         NSLog(@"Cannot find default output device!");
         return outputDeviceID;
     }
-    
+
     propertySize = sizeof(AudioDeviceID);
-    
+
     status = AudioHardwareServiceGetPropertyData(kAudioObjectSystemObject, &propertyAOPA, 0, NULL, &propertySize, &outputDeviceID);
-    
     if (status)
+    {
         NSLog(@"Cannot find default output device!");
-    
+        return outputDeviceID;
+    }
+
     return outputDeviceID;
 }
-+ (float)getVolumeLevel {
-    
+
++ (float)getVolumeLevel
+{
     Float32 outputVolume;
-    
+
     UInt32 propertySize = 0;
     OSStatus status = noErr;
     AudioObjectPropertyAddress propertyAOPA;
     propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
     propertyAOPA.mSelector = kAudioHardwareServiceDeviceProperty_VirtualMasterVolume;
     propertyAOPA.mScope = kAudioDevicePropertyScopeOutput;
-    
+
     AudioDeviceID outputDeviceID = [self defaultOutputDeviceID];
-    
-    if (outputDeviceID == kAudioObjectUnknown) {
+
+    if (outputDeviceID == kAudioObjectUnknown)
+    {
         NSLog(@"Unknown device");
-        return 0.0;
+        return 0.0f;
     }
-    
-    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA)) {
+
+    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA))
+    {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
-        return 0.0;
+        return 0.0f;
     }
-    
+
     propertySize = sizeof(Float32);
-    
+
     status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &outputVolume);
-    
-    if (status) {
+
+    if (status)
+    {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
         return 0.0;
     }
-    
-    if (outputVolume < 0.0 || outputVolume > 1.0) return 0.0;
-    
-    return outputVolume;
+
+    return (outputVolume < 0.0f || outputVolume > 1.0f) ? 0.0f : outputVolume;
 }
-+ (bool)isAudioMuted {
+
++ (BOOL)isAudioMuted
+{
     UInt32 mute;
     UInt32 propertySize = 0;
     OSStatus status = noErr;
@@ -86,30 +93,39 @@
     if (outputDeviceID == kAudioObjectUnknown)
     {
         NSLog(@"Unknown device");
-        return 0.0;
+        return NO;
     }
     if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA))
     {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
-        return 0.0;
+        return NO;
     }
     propertySize = sizeof(UInt32);
     status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &mute);
     if (status)
     {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
-        return 0.0;
+        return NO;
     }
     return mute;
 }
-+ (void)setMuted:(BOOL)state { // Couldn't find a way to do it in ObjC. Ended up embeding AppleScript. Works like a charm!
-    NSString *stateCodeStr;
-    if (state) stateCodeStr = @"with"; else stateCodeStr = @"without";
+
+// Couldn't find a way to do it in ObjC. Ended up embeding AppleScript. Works like a charm!
++ (void)setMuted:(BOOL)state
+{
+    NSString *stateCodeStr = (state) ? @"with" : @"without";
     NSAppleScript *asCode = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"set volume %@ output muted", stateCodeStr]];
     [asCode executeAndReturnError:nil];
 }
-+ (void)setVolumeLevel:(Float32)level {
-    if ([self isAudioMuted] && level > 0) [self setMuted:NO]; else if (![self isAudioMuted] && level == 0) [self setMuted:YES];
+
++ (void)setVolumeLevel:(Float32)level
+{
+    // TODO: Redesign
+    if ([self isAudioMuted] && level > 0)
+        [self setMuted:NO];
+    else if (![self isAudioMuted] && level == 0)
+        [self setMuted:YES];
+
     AudioObjectPropertyAddress propertyAddress = {
         kAudioHardwareServiceDeviceProperty_VirtualMasterVolume,
         kAudioDevicePropertyScopeOutput,

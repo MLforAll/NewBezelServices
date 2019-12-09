@@ -12,8 +12,14 @@
 #import "NSImage+ColorInvert.h"
 
 #define kDefaultVolumeSoundPath @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"
-#define kHUDHorizontalBias  330
-#define kHUDVerticalBias    45
+
+#if DEBUG
+# define kHUDHorizontalBias  330
+# define kHUDVerticalBias    45
+#else
+# define kHUDHorizontalBias  30
+# define kHUDVerticalBias    45
+#endif
 
 #pragma mark - Functions
 
@@ -87,14 +93,15 @@ static BOOL isDarkModeEnabled(void)
             break ;
     }
 
-    if (currImgName != imageName)
-        [_image setImage:[bezelImages valueForKey:imageName]];
+    if (currImgName == imageName)
+        return ;
+    [_image setImage:[bezelImages valueForKey:imageName]];
     currImgName = imageName;
 }
 
 - (void)updateProgressVolume:(BOOL)muted
 {
-    float level = (muted) ? 0 : [VolumeControl getVolumeLevel] * 100;
+    float level = (muted) ? 0 : VolumeControl.volumeLevel * 100;
     [_slider setDoubleValue:(double)level];
 }
 - (void)updateProgressBrightness
@@ -193,7 +200,7 @@ static BOOL isDarkModeEnabled(void)
     switch (action)
     {
         case kBezelActionVolume:
-            muted = [VolumeControl isAudioMuted];
+            muted = VolumeControl.muted;
             [self updateProgressVolume:muted];
             break ;
         case kBezelActionBrightness:
@@ -247,8 +254,6 @@ static BOOL isDarkModeEnabled(void)
         _visualEffectView = vibrant;
         [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
     }
-    else
-        [self.window setBackgroundColor:[NSColor blackColor]];
 
     previousThemeState = isDarkModeEnabled();
     [self adaptUI];

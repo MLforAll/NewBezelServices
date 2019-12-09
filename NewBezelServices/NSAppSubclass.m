@@ -37,10 +37,9 @@
         default:
             break ;
     }
+
     if (keyAction == kBezelActionUndef)
         return ;
-
-    //usleep(100);
     [_hudCtrl showHUDForAction:keyAction enableSlider:eslider textStringValue:textStringVal];
 }
 
