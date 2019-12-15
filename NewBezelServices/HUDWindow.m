@@ -24,7 +24,6 @@
 
 - (void)setContentView:(__kindof NSView *)contentView
 {
-    //[contentView setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameDarkAqua]];
     [contentView setWantsLayer:YES];
     [contentView.layer setCornerRadius:12.0f];
     [contentView.layer setBackgroundColor:[NSColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor];

@@ -48,6 +48,11 @@ static BOOL isDarkModeEnabled(void)
     NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
     if (_visualEffectView)
         [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
+    if (@available(macOS 10.14, *))
+    {
+        NSAppearanceName cvappn = (themeState) ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua;
+        [self.window.contentView setAppearance:[NSAppearance appearanceNamed:cvappn]];
+    }
 
     NSArray *imagePathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagesPath error:nil];
 

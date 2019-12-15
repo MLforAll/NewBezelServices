@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B815A57B239DB8DA00A0112B /* HUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B815A57A239DB8DA00A0112B /* HUDWindow.m */; };
-		B815A581239DC38D00A0112B /* NSView+ForceAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = B815A580239DC38D00A0112B /* NSView+ForceAppearance.m */; };
 		B869F21323918EEC00E6A81C /* HUDWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B869F21123918EEC00E6A81C /* HUDWindowController.m */; };
 		B869F21423918EEC00E6A81C /* HUDWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B869F21223918EEC00E6A81C /* HUDWindow.xib */; };
 		B869F21623918F4D00E6A81C /* Volume.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B869F21523918F4D00E6A81C /* Volume.pdf */; };
@@ -25,8 +24,6 @@
 /* Begin PBXFileReference section */
 		B815A579239DB8DA00A0112B /* HUDWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindow.h; sourceTree = "<group>"; };
 		B815A57A239DB8DA00A0112B /* HUDWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDWindow.m; sourceTree = "<group>"; };
-		B815A57F239DC38D00A0112B /* NSView+ForceAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSView+ForceAppearance.h"; sourceTree = "<group>"; };
-		B815A580239DC38D00A0112B /* NSView+ForceAppearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+ForceAppearance.m"; sourceTree = "<group>"; };
 		B869F21023918EEC00E6A81C /* HUDWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindowController.h; sourceTree = "<group>"; };
 		B869F21123918EEC00E6A81C /* HUDWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDWindowController.m; sourceTree = "<group>"; };
 		B869F21223918EEC00E6A81C /* HUDWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDWindow.xib; sourceTree = "<group>"; };
@@ -65,8 +62,6 @@
 			children = (
 				B815A579239DB8DA00A0112B /* HUDWindow.h */,
 				B815A57A239DB8DA00A0112B /* HUDWindow.m */,
-				B815A57F239DC38D00A0112B /* NSView+ForceAppearance.h */,
-				B815A580239DC38D00A0112B /* NSView+ForceAppearance.m */,
 			);
 			name = "UI Subclasses";
 			sourceTree = "<group>";
@@ -180,7 +175,7 @@
 		B8852F651B49713D00069BE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = OSXHackers;
 				TargetAttributes = {
 					B8852F6C1B49713D00069BE8 = {
@@ -224,7 +219,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B815A581239DC38D00A0112B /* NSView+ForceAppearance.m in Sources */,
 				B869F21323918EEC00E6A81C /* HUDWindowController.m in Sources */,
 				B884E65B1B4C08B900972348 /* NSAppSubclass.m in Sources */,
 				B8852F751B49713D00069BE8 /* main.m in Sources */,
