@@ -89,7 +89,7 @@
     assert(newConnection != nil);
 
     // Configure the incoming connection
-    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExampleDaemonProtocol)];
+    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExampleDaemonProtocolModified)];
     newConnection.exportedObject = self;
 
     // New connections always start in a suspended state

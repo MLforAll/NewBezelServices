@@ -14,7 +14,7 @@
 */
 
 
-static NSString *daemonLabel = @"com.example.daemon";
+#define daemonLabel @"com.example.daemon"
 
 
 @protocol ExampleDaemonProtocol
@@ -22,5 +22,13 @@ static NSString *daemonLabel = @"com.example.daemon";
 - (void) incrementCount;
 
 - (void) getCount:(void(^)(int count))completion;
+
+@end
+
+@protocol ExampleDaemonProtocolModified
+
+- (void) incrementCount;
+
+- (void) getCount:(void *)completion;
 
 @end
