@@ -1,0 +1,9 @@
+Volume:
+	- Mute: 4
+	- Up/Down: 5 or 23
+
+- Brightness: 1
+
+- KB Brightness:
+	- Disabled: 26
+	- Up/Down: 25

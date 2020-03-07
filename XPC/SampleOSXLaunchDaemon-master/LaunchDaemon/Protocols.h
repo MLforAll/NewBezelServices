@@ -19,16 +19,28 @@
 
 @protocol ExampleDaemonProtocol
 
-- (void) incrementCount;
+- (void)incrementCount;
+- (void)getCount:(void(^)(int count))completion;
 
-- (void) getCount:(void(^)(int count))completion;
+@end
+
+@protocol ExampleDaemonProtocolWrongArg
+
+- (void)incrementCount;
+- (void)getCount:(void *)completion;
 
 @end
 
 @protocol ExampleDaemonProtocolModified
 
-- (void) incrementCount;
+- (void)incrementCountS;
+- (void)getCount:(void(^)(int count))completion;
 
-- (void) getCount:(void *)completion;
+@end
+
+@protocol ExampleDaemonProtocolInvalid
+
+- (void)incrementCountS;
+- (void)getCountS:(void(^)(int count))completion;
 
 @end

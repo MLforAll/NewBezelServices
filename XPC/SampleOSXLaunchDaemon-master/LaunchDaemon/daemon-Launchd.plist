@@ -8,6 +8,8 @@
 	<true/>
 	<key>WaitForDebugger</key>
 	<false/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/sample_daemon_log.txt</string>
 	<key>MachServices</key>
 	<dict>
 		<key>com.example.daemon</key>

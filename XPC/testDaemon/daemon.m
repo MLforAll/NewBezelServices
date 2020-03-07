@@ -40,32 +40,32 @@
 	return YES;
 }
 
-- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)id priority:(unsigned int)prio msecUntilFade:(unsigned int)msec
+- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec
 {
 	NSLog(@"showImage1");
 }
 
-- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)id priority:(unsigned int)prio msecUntilFade:(unsigned int)msec withText:(NSString *)text
+- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec withText:(NSString *)text
 {
 	NSLog(@"showImage2");
 }
 
-- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)id priority:(unsigned int)prio msecUntilFade:(unsigned int)msec filledChiclets:(uint8_t)filled totalChiclets:(uint8_t)total locked:(uint8_t)locked
+- (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec filledChiclets:(unsigned int)filled totalChiclets:(unsigned int)total locked:(int8_t)locked
 {
-	NSLog(@"showImage3");
+	NSLog(@"showImage:%lli onDisplayID:%u priority:%u msecUntilFade:%u filledChiclets:%u totalChiclets:%u locked:%hhi", img, did, prio, msec, filled, total, locked);
 }
 
-- (void)showImageAtPath:(NSString *)path onDisplayID:(CGDirectDisplayID)id priority:(unsigned int)prio msecUntilFade:(unsigned int)msec withText:(NSString *)text
+- (void)showImageAtPath:(NSString *)path onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec withText:(NSString *)text
 {
 	NSLog(@"atPath");
 }
 
-- (void)fadeClassicImageOnDisplay:(CGDirectDisplayID)id
+- (void)fadeClassicImageOnDisplay:(CGDirectDisplayID)did
 {
 	NSLog(@"fadeClassic");
 }
 
-- (void)showFullScreenImage:(long long)img onDisplayID:(CGDirectDisplayID)id priority:(unsigned int)prio msecToAnimate:(unsigned int)msec
+- (void)showFullScreenImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecToAnimate:(unsigned int)msec
 {
 	NSLog(@"showFullScreenImage");
 }

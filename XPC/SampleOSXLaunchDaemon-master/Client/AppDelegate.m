@@ -28,7 +28,7 @@
   {
     // Create the XPC Connection on demand
     if (_connection == nil) {
-      _connection = [[NSXPCConnection alloc] initWithMachServiceName:daemonLabel options:0];
+      _connection = [[NSXPCConnection alloc] initWithMachServiceName:daemonLabel options:0]; // NSXPCConnectionPrivileged if privileged daemon
       _connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExampleDaemonProtocol)];
       _connection.invalidationHandler =
           ^{

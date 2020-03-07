@@ -27,7 +27,7 @@
 
 @implementation Daemon
 
-- (id) init
+- (id)init
   {
     // Launch daemons must configure their listener with the machServiceName initializer
     _listener = [[NSXPCListener alloc] initWithMachServiceName:daemonLabel];
@@ -39,7 +39,7 @@
   }
 
 
-- (void) start
+- (void)start
   {
     assert(_started == NO);
 
@@ -50,7 +50,7 @@
   }
 
 
-- (void) stop
+- (void)stop
   {
     assert(_started == YES);
 
@@ -63,7 +63,7 @@
 
 #pragma mark - ExampleDaemonProtocol
 
-- (void) incrementCount
+- (void)incrementCount
   {
     // Incrememnt the counter
     _count++;
@@ -73,7 +73,7 @@
   }
 
 
-- (void) getCount:(void (^)(int))completion
+- (void)getCount:(void (^)(int))completion
   {
     // Pass our count back in the completion block
     completion(_count);
@@ -82,15 +82,18 @@
 
 #pragma mark - NSXPCListenerDelegate
 
-- (BOOL) listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection
+- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection
   {
     // Sanity checks
     assert(listener == _listener);
     assert(newConnection != nil);
 
     // Configure the incoming connection
-    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExampleDaemonProtocolModified)];
+    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExampleDaemonProtocol)];
     newConnection.exportedObject = self;
+    newConnection.invalidationHandler = ^{
+        NSLog(@"Invalidated");
+    };
 
     // New connections always start in a suspended state
     [newConnection resume];

@@ -9,12 +9,12 @@
 
 @interface Daemon : NSObject
 
-- (id) init;
+- (id)init;
 
-- (void) start;
+- (void)start;
     // Begin listening for incoming XPC connections
 
-- (void) stop;
+- (void)stop;
     // Stop listening for incoming XPC connections
 
 @end
