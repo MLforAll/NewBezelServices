@@ -3,7 +3,7 @@
 //  NewBezelServices
 //
 //  Created by Kelian on 04/11/2016.
-//  Copyright © 2016 OSXHackers. All rights reserved.
+//  Copyright © 2016 MLforAll. All rights reserved.
 //
 
 #import "VolumeControl.h"
@@ -26,7 +26,7 @@
 
     if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA))
     {
-        NSLog(@"Cannot find default output device!");
+        NSLog(@"[ERR] Cannot find default output device!");
         return outputDeviceID;
     }
 
@@ -35,14 +35,14 @@
     status = AudioHardwareServiceGetPropertyData(kAudioObjectSystemObject, &propertyAOPA, 0, NULL, &propertySize, &outputDeviceID);
     if (status)
     {
-        NSLog(@"Cannot find default output device!");
+        NSLog(@"[ERR] Cannot find default output device!");
         return outputDeviceID;
     }
 
     return outputDeviceID;
 }
 
-+ (float)getVolumeLevel
++ (Float32)getVolumeLevel
 {
     Float32 outputVolume;
 
@@ -57,23 +57,22 @@
 
     if (outputDeviceID == kAudioObjectUnknown)
     {
-        NSLog(@"Unknown device");
+        NSLog(@"[ERR] Unknown device");
         return 0.0f;
     }
 
     if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA))
     {
-        NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
+        NSLog(@"[ERR] No volume returned for device %#0x", outputDeviceID);
         return 0.0f;
     }
 
     propertySize = sizeof(Float32);
 
     status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &outputVolume);
-
     if (status)
     {
-        NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
+        NSLog(@"[ERR] No volume returned for device %#0x", outputDeviceID);
         return 0.0;
     }
 
@@ -110,10 +109,10 @@
     return mute;
 }
 
-// Couldn't find a way to do it in ObjC. Ended up embeding AppleScript. Works like a charm!
-+ (void)setMuted:(BOOL)state
+// Couldn't find a way to do it in Obj-C. Ended up embeding AppleScript. Works like a charm!
++ (void)setMuted:(BOOL)muted
 {
-    NSString *stateCodeStr = (state) ? @"with" : @"without";
+    NSString *stateCodeStr = (muted) ? @"with" : @"without";
     NSAppleScript *asCode = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"set volume %@ output muted", stateCodeStr]];
     [asCode executeAndReturnError:nil];
 }
@@ -121,9 +120,10 @@
 + (void)setVolumeLevel:(Float32)level
 {
     // TODO: Redesign
-    if ([self isAudioMuted] && level > 0)
+    BOOL muted = [self isAudioMuted];
+    if (muted && level > 0)
         [self setMuted:NO];
-    else if (![self isAudioMuted] && level == 0)
+    else if (!muted && level == 0)
         [self setMuted:YES];
 
     AudioObjectPropertyAddress propertyAddress = {

@@ -3,84 +3,74 @@
 //  NewBezelServices
 //
 //  Created by Kelian on 04/11/2016.
-//  Copyright © 2016 OSXHackers. All rights reserved.
+//  Copyright © 2016 MLforAll. All rights reserved.
 //
 
 // Almost completely from: http://mattdanger.net/2008/12/adjust-mac-os-x-display-brightness-from-the-terminal
 
 #import "BrightnessControl.h"
 
+#define kMaxDisplays		16
+#define kDisplayBrightness	(CFSTR(kIODisplayBrightnessKey))
+
 @implementation BrightnessControl
 
-const int kMaxDisplays = 16;
-const CFStringRef kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
-
-+ (float)getBrightnessLevel {
++ (float)getBrightnessLevel
+{
+    float ret;
     CGDirectDisplayID display[kMaxDisplays];
     CGDisplayCount numDisplays;
-    CGDisplayErr err;
-    err = CGGetActiveDisplayList(kMaxDisplays, display, &numDisplays);
-    
+
+    CGDisplayErr err = CGGetActiveDisplayList(kMaxDisplays, display, &numDisplays);
     if (err != CGDisplayNoErr)
-        NSLog(@"Cannot get list of displays (error %d)\n",err);
-    
-    for (CGDisplayCount i = 0; i < numDisplays; ++i) {
-        
+    {
+        NSLog(@"[ERR] Cannot get list of displays (%i)\n", err);
+        return kBrightnessControlMaxValue;
+    }
+
+    for (CGDisplayCount i = 0; i < numDisplays; i++)
+    {
         CGDirectDisplayID dspy = display[i];
         CGDisplayModeRef originalMode = CGDisplayCopyDisplayMode(dspy);
-        if (originalMode == NULL)
-            continue;
+        if (!originalMode)
+            continue ;
         CGDisplayModeRelease(originalMode);
         io_service_t service = CGDisplayIOServicePort(dspy);
-        
-        float brightness;
-        err = IODisplayGetFloatParameter(service, kNilOptions, kDisplayBrightness,
-                                        &brightness);
-        if (err != kIOReturnSuccess) {
-            NSLog(@"Failed to get brightness of display 0x%x (error %d)",
-                  (unsigned int)dspy, err);
-            continue;
-        }
-        return brightness;
+
+        err = IODisplayGetFloatParameter(service, kNilOptions, kDisplayBrightness, &ret);
+        if (err == kIOReturnSuccess)
+            return ret;
+        NSLog(@"[ERR] Failed to get brightness of display %#0x (%i)", (unsigned int)dspy, err);
     }
+
     NSLog(@"[ERR] Couldn't get brightness for any display!");
-    return -1.0; //couldn't get brightness for any display
+    return kBrightnessControlMaxValue;
 }
 
-+ (void)setBrightnessLevel:(float)level {
++ (void)setBrightnessLevel:(float)level
+{
     CGDirectDisplayID display[kMaxDisplays];
     CGDisplayCount numDisplays;
-    CGDisplayErr err;
-    err = CGGetActiveDisplayList(kMaxDisplays, display, &numDisplays);
-    
+
+    CGDisplayErr err = CGGetActiveDisplayList(kMaxDisplays, display, &numDisplays);
     if (err != CGDisplayNoErr)
-        NSLog(@"Cannot get list of displays (error %d)\n",err);
-    
-    for (CGDisplayCount i = 0; i < numDisplays; ++i) {
-        
+    {
+        NSLog(@"[ERR] Cannot get list of displays (%i)\n", err);
+        return ;
+    }
+
+    for (CGDisplayCount i = 0; i < numDisplays; i++)
+    {
         CGDirectDisplayID dspy = display[i];
         CGDisplayModeRef originalMode = CGDisplayCopyDisplayMode(dspy);
-        if (originalMode == NULL)
-            continue;
+        if (!originalMode)
+            continue ;
         CGDisplayModeRelease(originalMode);
         io_service_t service = CGDisplayIOServicePort(dspy);
-        
-        float brightness;
-        err= IODisplayGetFloatParameter(service, kNilOptions, kDisplayBrightness,
-                                        &brightness);
-        if (err != kIOReturnSuccess) {
-            NSLog(@"Failed to get brightness of display 0x%x (error %d)",
-                  (unsigned int)dspy, err);
-            continue;
-        }
-        
-        err = IODisplaySetFloatParameter(service, kNilOptions, kDisplayBrightness,
-                                         level);
-        if (err != kIOReturnSuccess) {
-            NSLog(@"Failed to set brightness of display 0x%x (error %d)",
-                  (unsigned int)dspy, err);
-            continue;
-        }
+
+        err = IODisplaySetFloatParameter(service, kNilOptions, kDisplayBrightness, level);
+        if (err != kIOReturnSuccess)
+            NSLog(@"[ERR] Failed to set brightness of display %#0x (%i)", (unsigned int)dspy, err);
     }
 }
 

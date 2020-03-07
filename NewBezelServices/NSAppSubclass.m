@@ -3,36 +3,44 @@
 //  NewBezelServices
 //
 //  Created by Kelian on 07/07/2015.
-//  Copyright © 2015 OSXHackers. All rights reserved.
+//  Copyright © 2015 MLforAll. All rights reserved.
 //
 
 #import "NSAppSubclass.h"
-#import <IOKit/hidsystem/ev_keymap.h>
+
+#import "VolumeControl.h"
+#import "BrightnessControl.h"
 #import "HUDWindowController.h"
 
+#import <IOKit/hidsystem/ev_keymap.h>
+
 @implementation NSAppSubclass
+
+#ifdef DEBUG
 
 - (void)mediaKeyEvent:(int)key state:(BOOL)state
 {
     bezel_action_t keyAction = kBezelActionUndef;
-    BOOL eslider = YES;
-    NSString *textStringVal = nil;
+    double filled = 0;
 
     switch (key)
     {
         case NX_KEYTYPE_SOUND_UP:
         case NX_KEYTYPE_SOUND_DOWN:
         case NX_KEYTYPE_MUTE:
-            keyAction = kBezelActionVolume;
+        {
+            BOOL muted = VolumeControl.muted;
+            keyAction = muted ? kBezelActionMute : kBezelActionVolume;
+            filled = muted ? 0 : VolumeControl.volumeLevel;
             break;
+        }
         case NX_KEYTYPE_BRIGHTNESS_UP:
         case NX_KEYTYPE_BRIGHTNESS_DOWN:
             keyAction = kBezelActionBrightness;
+            filled = BrightnessControl.brightnessLevel;
             break;
         case NX_KEYTYPE_EJECT:
             keyAction = kBezelActionEject;
-            eslider = NO;
-            textStringVal = @"Ejecting...";
             break;
         default:
             break ;
@@ -40,7 +48,7 @@
 
     if (keyAction == kBezelActionUndef)
         return ;
-    [_hudCtrl showHUDForAction:keyAction enableSlider:eslider textStringValue:textStringVal];
+    [_hudCtrl showHUDForAction:keyAction sliderFilled:filled sliderMax:1.0f textStringValue:nil];
 }
 
 - (void)sendEvent:(NSEvent *)event
@@ -61,5 +69,7 @@
     // Continue on to super
     [super sendEvent:event];
 }
+
+#endif
 
 @end

@@ -6,6 +6,11 @@
 	<string>com.mlforall.NewBezelServices</string>
 	<key>Program</key>
 	<string>/Library/Services/NewBezelServices.app/Contents/MacOS/NewBezelServices</string>
+	<key>MachServices</key>
+	<dict>
+		<key>com.apple.OSDUIHelper</key>
+		<true/>
+	</dict>
 	<key>KeepAlive</key>
 	<true/>
 	<key>RunAtLoad</key>

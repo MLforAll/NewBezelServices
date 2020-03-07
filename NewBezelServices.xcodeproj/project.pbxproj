@@ -24,6 +24,7 @@
 /* Begin PBXFileReference section */
 		B815A579239DB8DA00A0112B /* HUDWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindow.h; sourceTree = "<group>"; };
 		B815A57A239DB8DA00A0112B /* HUDWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDWindow.m; sourceTree = "<group>"; };
+		B8489AAD2414484900F33989 /* OSDUIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OSDUIHelper.h; path = NewBezelServices/OSDUIHelper.h; sourceTree = SOURCE_ROOT; };
 		B869F21023918EEC00E6A81C /* HUDWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindowController.h; sourceTree = "<group>"; };
 		B869F21123918EEC00E6A81C /* HUDWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDWindowController.m; sourceTree = "<group>"; };
 		B869F21223918EEC00E6A81C /* HUDWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDWindow.xib; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		B8852F6F1B49713D00069BE8 /* NewBezelServices */ = {
 			isa = PBXGroup;
 			children = (
-				B869F21523918F4D00E6A81C /* Volume.pdf */,
 				B8F93691239555EA0099685E /* Code */,
 				B8F93690239555E10099685E /* UI */,
 				B8852F731B49713D00069BE8 /* Supporting Files */,
@@ -128,6 +128,7 @@
 		B8F93690239555E10099685E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B869F21523918F4D00E6A81C /* Volume.pdf */,
 				B869F21223918EEC00E6A81C /* HUDWindow.xib */,
 				B8852F781B49713D00069BE8 /* MainMenu.xib */,
 			);
@@ -137,6 +138,7 @@
 		B8F93691239555EA0099685E /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				B8489AAD2414484900F33989 /* OSDUIHelper.h */,
 				B8852F701B49713D00069BE8 /* AppDelegate.h */,
 				B8852F711B49713D00069BE8 /* AppDelegate.m */,
 				B884E6591B4C08B900972348 /* NSAppSubclass.h */,
@@ -175,7 +177,7 @@
 		B8852F651B49713D00069BE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = OSXHackers;
 				TargetAttributes = {
 					B8852F6C1B49713D00069BE8 = {
@@ -350,11 +352,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NewBezelServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mlforall.NewBezelServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -365,11 +368,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NewBezelServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.OSXHackers.NewBezelServices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mlforall.NewBezelServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};

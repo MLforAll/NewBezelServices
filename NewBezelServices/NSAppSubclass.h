@@ -3,7 +3,7 @@
 //  NewBezelServices
 //
 //  Created by Kelian on 07/07/2015.
-//  Copyright © 2015 OSXHackers. All rights reserved.
+//  Copyright © 2015 MLforAll. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

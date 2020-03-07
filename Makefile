@@ -19,7 +19,7 @@ debug:
 mustroot:
 	@ [ `id -u` -eq 0 ] || { echo 'You must run this as root' >&2; exit 1; }
 
-install: mustroot release
+install: mustroot
 	@ [ -d "$(INSTALL_ROOT)" ] || mkdir -p "$(INSTALL_ROOT)"
 	su "$(CONSOLE_USER)" -c 'launchctl unload "$(AGENT_PATH)"'
 	rm -rf "$(INSTALL_PATH)" "$(AGENT_PATH)"

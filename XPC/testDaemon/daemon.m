@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "../OSDUIHelper_XPC_Protocol.h"
+#import "../../NewBezelServices/OSDUIHelper.h"
 
 @interface Daemon : NSObject <NSXPCListenerDelegate, OSDUIHelperProtocol>
 {
@@ -52,6 +52,7 @@
 
 - (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec filledChiclets:(unsigned int)filled totalChiclets:(unsigned int)total locked:(int8_t)locked
 {
+	NSLog(@"isMainThread: %hhu", (uint8_t)NSThread.isMainThread);
 	NSLog(@"showImage:%lli onDisplayID:%u priority:%u msecUntilFade:%u filledChiclets:%u totalChiclets:%u locked:%hhi", img, did, prio, msec, filled, total, locked);
 }
 
