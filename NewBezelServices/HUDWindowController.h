@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef enum : int8_t
 {
     kBezelActionUndef = -1,
@@ -39,5 +37,3 @@ typedef enum : int8_t
 - (void)showHUDForAction:(bezel_action_t)action sliderFilled:(double)filled sliderMax:(double)max textStringValue:(NSString * __nullable)tsval;
 
 @end
-
-NS_ASSUME_NONNULL_END

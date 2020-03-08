@@ -35,7 +35,7 @@
         if (!originalMode)
             continue ;
         CGDisplayModeRelease(originalMode);
-        io_service_t service = CGDisplayIOServicePort(dspy);
+        io_service_t service = CGDisplayIOServicePort(dspy); // deprecated
 
         err = IODisplayGetFloatParameter(service, kNilOptions, kDisplayBrightness, &ret);
         if (err == kIOReturnSuccess)
@@ -66,7 +66,7 @@
         if (!originalMode)
             continue ;
         CGDisplayModeRelease(originalMode);
-        io_service_t service = CGDisplayIOServicePort(dspy);
+        io_service_t service = CGDisplayIOServicePort(dspy); // deprecated
 
         err = IODisplaySetFloatParameter(service, kNilOptions, kDisplayBrightness, level);
         if (err != kIOReturnSuccess)

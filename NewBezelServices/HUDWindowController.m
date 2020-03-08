@@ -21,16 +21,20 @@
 # define kHUDVerticalBias    45
 #endif
 
-#pragma mark - Functions
+#pragma mark - Private Functions
 
 static BOOL isDarkModeEnabled(void)
 {
-    NSDictionary *udsDict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
-    NSString *style = [udsDict valueForKey:@"AppleInterfaceStyle"];
-    return (style && [[style lowercaseString] isEqualToString:@"dark"]);
+    if (@available(macOS 10.10, *))
+    {
+        NSDictionary *udsDict = [NSUserDefaults.standardUserDefaults persistentDomainForName:NSGlobalDomain];
+        NSString *style = [udsDict valueForKey:@"AppleInterfaceStyle"];
+        return (style && [style.lowercaseString isEqualToString:@"dark"]);
+    }
+    return NO;
 }
 
-#pragma mark -
+#pragma mark - Private Interface
 
 @interface HUDWindowController ()
 
@@ -40,6 +44,8 @@ static BOOL isDarkModeEnabled(void)
 @property (weak) IBOutlet NSImageView *image;
 
 @end
+
+#pragma mark - Implementation
 
 @implementation HUDWindowController
 
@@ -51,16 +57,17 @@ static BOOL isDarkModeEnabled(void)
 
     if (_bezelImages && themeState == _previousThemeState)
         return ;
-
     _previousThemeState = themeState;
 
-    NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
-    if (_visualEffectView)
-        [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
-    if (@available(macOS 10.14, *))
+    if (@available(macOS 10.9, *))
     {
-        NSAppearanceName cvappn = (themeState) ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua;
-        [self.window.contentView setAppearance:[NSAppearance appearanceNamed:cvappn]];
+        NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
+        [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
+        if (@available(macOS 10.14, *))
+        {
+            NSAppearanceName cvappn = (themeState) ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua;
+            [self.window.contentView setAppearance:[NSAppearance appearanceNamed:cvappn]];
+        }
     }
 
     NSArray *imagePathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_imagesPath error:nil];
@@ -108,7 +115,7 @@ static BOOL isDarkModeEnabled(void)
 
 - (void)setProgressVolumeWithSliderDoubleValue:(double)doubleValue maxValue:(double)maxValue
 {
-    if (NSApp.currentEvent.type == NSLeftMouseUp)
+    if (NSApp.currentEvent.type == NSEventTypeLeftMouseUp)
         [_volumeSound play];
 
     Float32 currSliderVolumeEquivalent = doubleValue / maxValue;
@@ -206,16 +213,17 @@ static BOOL isDarkModeEnabled(void)
 
 #pragma mark - Init
 
+#define ELCAP_IMAGESPATH    @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/BezelUI/HiDPI"
+#define SIERRA_IMAGESPATH   @"/System/Library/CoreServices/OSDUIHelper.app/Contents/Resources"
+
 - (void)loadWindow
 {
     [super loadWindow];
 
-    NSString *elcap_earlier_imagespath = @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/BezelUI/HiDPI";
-    NSString *sierra_later_imagespath = @"/System/Library/CoreServices/OSDUIHelper.app/Contents/Resources";
-    if ([[NSFileManager defaultManager] fileExistsAtPath:elcap_earlier_imagespath])
-        _imagesPath = elcap_earlier_imagespath;
+    if (@available(macOS 10.12, *))
+        _imagesPath = SIERRA_IMAGESPATH;
     else
-        _imagesPath = sierra_later_imagespath;
+        _imagesPath = ELCAP_IMAGESPATH;
 
     [self.window setCanBecomeVisibleWithoutLogin:YES];
     [self.window setLevel:kCGMaximumWindowLevel];
@@ -226,14 +234,15 @@ static BOOL isDarkModeEnabled(void)
     if (@available(macOS 10.10, *))
     {
         NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
+
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
         [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
         [vibrant setState:NSVisualEffectStateActive];
+        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
         [self.window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
 
         _visualEffectView = vibrant;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
     }
 
     _previousThemeState = isDarkModeEnabled();

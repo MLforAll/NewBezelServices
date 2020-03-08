@@ -17,7 +17,8 @@
     {
         [self setOpaque:NO];
         [self setBackgroundColor:[NSColor clearColor]];
-        [self setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameAqua]];
+        if (@available(macOS 10.9, *))
+            [self setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameAqua]];
     }
     return self;
 }
@@ -26,7 +27,7 @@
 {
     [contentView setWantsLayer:YES];
     [contentView.layer setCornerRadius:12.0f];
-    [contentView.layer setBackgroundColor:[NSColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor];
+    [contentView.layer setBackgroundColor:[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.75].CGColor];
 
     [super setContentView:contentView];
 }

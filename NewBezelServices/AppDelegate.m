@@ -16,17 +16,22 @@
 {
     _hudCtrl = [[HUDWindowController alloc] initWithWindowNibName:@"HUDWindow"];
     [_hudCtrl loadWindow];
-    
+
 #ifdef DEBUG
     [(NSAppSubclass *)NSApp setHudCtrl:_hudCtrl];
 #else
-    _listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.apple.OSDUIHelper"];
+    NSString *machServName;
+    if (@available(macOS 10.12, *))
+        machServName = @"com.apple.OSDUIHelper";
+    else
+        machServName = @"com.apple.BezelUI";
+    _listener = [[NSXPCListener alloc] initWithMachServiceName:machServName];
     [_listener setDelegate:self];
     [_listener resume];
 #endif
 }
 
-#pragma mark - XPC Delegate
+#pragma mark - XPC Delegate (10.12+)
 
 #ifndef DEBUG
 
@@ -42,7 +47,7 @@
     return YES;
 }
 
-#pragma mark - OSDUIHelper Protocol
+#pragma mark - OSDUIHelper Protocol (10.12+)
 
 - (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec filledChiclets:(unsigned int)filled totalChiclets:(unsigned int)total locked:(int8_t)locked
 {
