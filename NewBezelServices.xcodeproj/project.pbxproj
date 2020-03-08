@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -178,7 +178,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = OSXHackers;
+				ORGANIZATIONNAME = MLforAll;
 				TargetAttributes = {
 					B8852F6C1B49713D00069BE8 = {
 						CreatedOnToolsVersion = 7.0;
@@ -186,7 +186,7 @@
 				};
 			};
 			buildConfigurationList = B8852F681B49713D00069BE8 /* Build configuration list for PBXProject "NewBezelServices" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -355,7 +355,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NewBezelServices/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mlforall.NewBezelServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,7 +374,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NewBezelServices/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mlforall.NewBezelServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
