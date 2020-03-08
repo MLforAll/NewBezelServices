@@ -15,6 +15,9 @@
 
 @implementation BrightnessControl
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 + (float)getBrightnessLevel
 {
     float ret;
@@ -73,5 +76,7 @@
             NSLog(@"[ERR] Failed to set brightness of display %#0x (%i)", (unsigned int)dspy, err);
     }
 }
+
+#pragma GCC diagnostic pop
 
 @end

@@ -20,12 +20,7 @@
 #ifdef DEBUG
     [(NSAppSubclass *)NSApp setHudCtrl:_hudCtrl];
 #else
-    NSString *machServName;
-    if (@available(macOS 10.12, *))
-        machServName = @"com.apple.OSDUIHelper";
-    else
-        machServName = @"com.apple.BezelUI";
-    _listener = [[NSXPCListener alloc] initWithMachServiceName:machServName];
+    _listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.apple.OSDUIHelper"];
     [_listener setDelegate:self];
     [_listener resume];
 #endif

@@ -239,6 +239,7 @@ static BOOL isDarkModeEnabled(void)
         [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
         [vibrant setState:NSVisualEffectStateActive];
         [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
+        [vibrant setMaterial:NSVisualEffectMaterialMenu];
         [self.window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
 
         _visualEffectView = vibrant;
