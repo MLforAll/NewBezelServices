@@ -59,10 +59,17 @@ static BOOL isDarkModeEnabled(void)
         return ;
     _previousThemeState = themeState;
 
-    if (@available(macOS 10.9, *))
+    if (@available(macOS 10.10, *))
     {
         NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
         [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
+        if (themeState)
+        {
+            if (@available(macOS 10.14, *))
+                [_visualEffectView setMaterial:NSVisualEffectMaterialHUDWindow];
+        }
+        else
+            [_visualEffectView setMaterial:NSVisualEffectMaterialMenu];
         if (@available(macOS 10.14, *))
         {
             NSAppearanceName cvappn = (themeState) ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua;
@@ -239,7 +246,6 @@ static BOOL isDarkModeEnabled(void)
         [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
         [vibrant setState:NSVisualEffectStateActive];
         [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
-        [vibrant setMaterial:NSVisualEffectMaterialMenu];
         [self.window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
 
         _visualEffectView = vibrant;

@@ -64,7 +64,8 @@
         case 25:
             action = kBezelActionKeyBrightness;
             break ;
-        case 26:
+        case 26: // old keyboards (2007-): kbBright off key; new keyboards: kbBright = 0
+        case 28: // disabled (too much light detected by ALS)
             action = kBezelActionKeyBrightnessOff;
             break ;
     }

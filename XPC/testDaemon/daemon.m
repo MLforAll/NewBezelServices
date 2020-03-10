@@ -18,7 +18,8 @@
 		_listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.apple.OSDUIHelper"];
 		[_listener setDelegate:self];
 		[_listener resume];
-		NSLog(@"hello");
+		NSLog(@"_listener is well... listening...");
+		NSLog(@"isMainThread: %hhu", (uint8_t)NSThread.isMainThread);
 	}
 	return self;
 }
@@ -52,7 +53,6 @@
 
 - (void)showImage:(long long)img onDisplayID:(CGDirectDisplayID)did priority:(unsigned int)prio msecUntilFade:(unsigned int)msec filledChiclets:(unsigned int)filled totalChiclets:(unsigned int)total locked:(int8_t)locked
 {
-	NSLog(@"isMainThread: %hhu", (uint8_t)NSThread.isMainThread);
 	NSLog(@"showImage:%lli onDisplayID:%u priority:%u msecUntilFade:%u filledChiclets:%u totalChiclets:%u locked:%hhi", img, did, prio, msec, filled, total, locked);
 }
 
