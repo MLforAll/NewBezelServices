@@ -20,12 +20,7 @@
 #ifdef DEBUG
     [(NSAppSubclass *)NSApp setHudCtrl:_hudCtrl];
 #else
-    NSString *machServName;
-    if (@available(macOS 10.12, *))
-        machServName = @"com.apple.OSDUIHelper";
-    else
-        machServName = @"com.apple.BezelUI";
-    _listener = [[NSXPCListener alloc] initWithMachServiceName:machServName];
+    _listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.apple.OSDUIHelper"];
     [_listener setDelegate:self];
     [_listener resume];
 #endif
@@ -69,7 +64,8 @@
         case 25:
             action = kBezelActionKeyBrightness;
             break ;
-        case 26:
+        case 26: // old keyboards (2007-): kbBright off key; new keyboards: kbBright = 0
+        case 28: // disabled (too much light detected by ALS)
             action = kBezelActionKeyBrightnessOff;
             break ;
     }

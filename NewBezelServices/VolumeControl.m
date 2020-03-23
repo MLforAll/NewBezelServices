@@ -12,6 +12,9 @@
 
 @implementation VolumeControl
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 + (AudioDeviceID)defaultOutputDeviceID
 {
     AudioDeviceID outputDeviceID = kAudioObjectUnknown;
@@ -24,7 +27,7 @@
     propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
     propertyAOPA.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
 
-    if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA))
+    if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA)) // deprecated
     {
         NSLog(@"[ERR] Cannot find default output device!");
         return outputDeviceID;
@@ -32,7 +35,7 @@
 
     propertySize = sizeof(AudioDeviceID);
 
-    status = AudioHardwareServiceGetPropertyData(kAudioObjectSystemObject, &propertyAOPA, 0, NULL, &propertySize, &outputDeviceID);
+    status = AudioHardwareServiceGetPropertyData(kAudioObjectSystemObject, &propertyAOPA, 0, NULL, &propertySize, &outputDeviceID); // deprecated
     if (status)
     {
         NSLog(@"[ERR] Cannot find default output device!");
@@ -61,7 +64,7 @@
         return 0.0f;
     }
 
-    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA))
+    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA)) // deprecated
     {
         NSLog(@"[ERR] No volume returned for device %#0x", outputDeviceID);
         return 0.0f;
@@ -69,7 +72,7 @@
 
     propertySize = sizeof(Float32);
 
-    status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &outputVolume);
+    status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &outputVolume); // deprecated
     if (status)
     {
         NSLog(@"[ERR] No volume returned for device %#0x", outputDeviceID);
@@ -94,13 +97,13 @@
         NSLog(@"Unknown device");
         return NO;
     }
-    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA))
+    if (!AudioHardwareServiceHasProperty(outputDeviceID, &propertyAOPA)) // deprecated
     {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
         return NO;
     }
     propertySize = sizeof(UInt32);
-    status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &mute);
+    status = AudioHardwareServiceGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propertySize, &mute); // deprecated
     if (status)
     {
         NSLog(@"No volume returned for device 0x%0x", outputDeviceID);
@@ -136,7 +139,9 @@
                                         0,
                                         NULL,
                                         sizeof(Float32),
-                                        &level);
+                                        &level); // deprecated
 }
+
+#pragma GCC diagnostic pop
 
 @end

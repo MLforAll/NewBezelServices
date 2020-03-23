@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HUDWindow : NSWindow
+@interface HUDWindow : NSPanel
 
 @end
