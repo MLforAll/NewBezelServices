@@ -10,6 +10,7 @@
 #import "VolumeControl.h"
 #import "BrightnessControl.h"
 #import "NSImage+ColorInvert.h"
+#include <dlfcn.h>
 
 #define kDefaultVolumeSoundPath @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"
 
@@ -23,10 +24,51 @@
 
 #pragma mark - Private Functions
 
+typedef enum : uint8_t
+{
+    kThemeUndef = -1,
+    kThemeLight = 0,
+    kThemeDark,
+} os_theme_t;
+
+#define SLSPATH    "/System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/SkyLight"
+
+static inline void *
+openSkylightHandle(void)
+{
+    if (![NSFileManager.defaultManager fileExistsAtPath:@SLSPATH])
+        return NULL;
+
+    return dlopen(SLSPATH, RTLD_LAZY);
+}
+
+static os_theme_t
+skylightDetectTheme(void)
+{
+    void *handle;
+    BOOL (*getTheme)(void);
+    os_theme_t ret;
+    
+    if (!(handle = openSkylightHandle()))
+        return kThemeUndef;
+
+    if (!(getTheme = dlsym(handle, "SLSGetAppearanceThemeLegacy")))
+    {
+        (void) dlclose(handle);
+        return kThemeUndef;
+    }
+    ret = getTheme() ? kThemeDark : kThemeLight;
+
+    (void) dlclose(handle);
+    return ret;
+}
+
 static BOOL isDarkModeEnabled(void)
 {
     if (@available(macOS 10.10, *))
     {
+        if (@available(macOS 10.12, *))
+            return skylightDetectTheme() == kThemeDark;
         NSDictionary *udsDict = [NSUserDefaults.standardUserDefaults persistentDomainForName:NSGlobalDomain];
         NSString *style = [udsDict valueForKey:@"AppleInterfaceStyle"];
         return (style && [style.lowercaseString isEqualToString:@"dark"]);
