@@ -36,9 +36,6 @@ typedef enum : uint8_t
 static inline void *
 openSkylightHandle(void)
 {
-    if (![NSFileManager.defaultManager fileExistsAtPath:@SLSPATH])
-        return NULL;
-
     return dlopen(SLSPATH, RTLD_LAZY);
 }
 
