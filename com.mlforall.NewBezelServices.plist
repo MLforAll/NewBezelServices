@@ -11,6 +11,11 @@
 		<key>com.apple.OSDUIHelper</key>
 		<true/>
 	</dict>
+	<key>LimitLoadToSessionType</key>
+	<array>
+		<string>LoginWindow</string>
+		<string>Aqua</string>
+	</array>
 	<key>KeepAlive</key>
 	<true/>
 	<key>RunAtLoad</key>
