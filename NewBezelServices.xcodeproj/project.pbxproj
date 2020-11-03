@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B800C4BB2550D69E00E20E8A /* HUDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B800C4BA2550D69E00E20E8A /* HUDProgressView.m */; };
 		B815A57B239DB8DA00A0112B /* HUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B815A57A239DB8DA00A0112B /* HUDWindow.m */; };
 		B869F21323918EEC00E6A81C /* HUDWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B869F21123918EEC00E6A81C /* HUDWindowController.m */; };
 		B869F21423918EEC00E6A81C /* HUDWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B869F21223918EEC00E6A81C /* HUDWindow.xib */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B800C4B92550D69E00E20E8A /* HUDProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDProgressView.h; sourceTree = "<group>"; };
+		B800C4BA2550D69E00E20E8A /* HUDProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDProgressView.m; sourceTree = "<group>"; };
 		B815A579239DB8DA00A0112B /* HUDWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDWindow.h; sourceTree = "<group>"; };
 		B815A57A239DB8DA00A0112B /* HUDWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDWindow.m; sourceTree = "<group>"; };
 		B8489AAD2414484900F33989 /* OSDUIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OSDUIHelper.h; path = NewBezelServices/OSDUIHelper.h; sourceTree = SOURCE_ROOT; };
@@ -63,6 +66,8 @@
 			children = (
 				B815A579239DB8DA00A0112B /* HUDWindow.h */,
 				B815A57A239DB8DA00A0112B /* HUDWindow.m */,
+				B800C4B92550D69E00E20E8A /* HUDProgressView.h */,
+				B800C4BA2550D69E00E20E8A /* HUDProgressView.m */,
 			);
 			name = "UI Subclasses";
 			sourceTree = "<group>";
@@ -177,7 +182,7 @@
 		B8852F651B49713D00069BE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = MLforAll;
 				TargetAttributes = {
 					B8852F6C1B49713D00069BE8 = {
@@ -221,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B800C4BB2550D69E00E20E8A /* HUDProgressView.m in Sources */,
 				B869F21323918EEC00E6A81C /* HUDWindowController.m in Sources */,
 				B884E65B1B4C08B900972348 /* NSAppSubclass.m in Sources */,
 				B8852F751B49713D00069BE8 /* main.m in Sources */,
@@ -269,6 +275,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -323,6 +330,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

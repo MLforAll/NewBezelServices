@@ -10,6 +10,7 @@
 #import "VolumeControl.h"
 #import "BrightnessControl.h"
 #import "NSImage+ColorInvert.h"
+#import "HUDProgressView.h"
 #include <dlfcn.h>
 
 #define kDefaultVolumeSoundPath @"/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"
@@ -22,63 +23,11 @@
 # define kHUDVerticalBias    45
 #endif
 
-#pragma mark - Private Functions
-
-typedef enum : uint8_t
-{
-    kThemeUndef = -1,
-    kThemeLight = 0,
-    kThemeDark,
-} os_theme_t;
-
-#define SLSPATH    "/System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/SkyLight"
-
-static inline void *
-openSkylightHandle(void)
-{
-    return dlopen(SLSPATH, RTLD_LAZY);
-}
-
-static os_theme_t
-skylightDetectTheme(void)
-{
-    void *handle;
-    BOOL (*getTheme)(void);
-    os_theme_t ret;
-    
-    if (!(handle = openSkylightHandle()))
-        return kThemeUndef;
-
-    if (!(getTheme = dlsym(handle, "SLSGetAppearanceThemeLegacy")))
-    {
-        (void) dlclose(handle);
-        return kThemeUndef;
-    }
-    ret = getTheme() ? kThemeDark : kThemeLight;
-
-    (void) dlclose(handle);
-    return ret;
-}
-
-static BOOL isDarkModeEnabled(void)
-{
-    if (@available(macOS 10.10, *))
-    {
-        if (@available(macOS 10.12, *))
-            return skylightDetectTheme() == kThemeDark;
-        NSDictionary *udsDict = [NSUserDefaults.standardUserDefaults persistentDomainForName:NSGlobalDomain];
-        NSString *style = [udsDict valueForKey:@"AppleInterfaceStyle"];
-        return (style && [style.lowercaseString isEqualToString:@"dark"]);
-    }
-    return NO;
-}
-
 #pragma mark - Private Interface
 
 @interface HUDWindowController ()
 
-@property (weak) IBOutlet NSTabView *tabView;
-@property (weak) IBOutlet NSSlider *slider;
+@property (weak) IBOutlet HUDProgressView *slider;
 @property (weak) IBOutlet NSTextField *text;
 @property (weak) IBOutlet NSImageView *image;
 
@@ -90,31 +39,11 @@ static BOOL isDarkModeEnabled(void)
 
 #pragma mark Theme Switch
 
-- (void)adaptUI
+- (void)adaptUI:(BOOL)isDarkTheme
 {
-    BOOL themeState = isDarkModeEnabled();
-
-    if (_bezelImages && themeState == _previousThemeState)
+    if (_bezelImages && isDarkTheme == _previousThemeState)
         return ;
-    _previousThemeState = themeState;
-
-    if (@available(macOS 10.10, *))
-    {
-        NSAppearanceName vappn = (themeState) ? NSAppearanceNameVibrantDark : NSAppearanceNameVibrantLight;
-        [_visualEffectView setAppearance:[NSAppearance appearanceNamed:vappn]];
-        if (themeState)
-        {
-            if (@available(macOS 10.14, *))
-                [_visualEffectView setMaterial:NSVisualEffectMaterialHUDWindow];
-        }
-        else
-            [_visualEffectView setMaterial:NSVisualEffectMaterialMenu];
-        if (@available(macOS 10.14, *))
-        {
-            NSAppearanceName cvappn = (themeState) ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua;
-            [self.window.contentView setAppearance:[NSAppearance appearanceNamed:cvappn]];
-        }
-    }
+    _previousThemeState = isDarkTheme;
 
     NSArray *imagePathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_imagesPath error:nil];
 
@@ -127,9 +56,9 @@ static BOOL isDarkModeEnabled(void)
     for (NSString *filename in hudImagesFilenames)
     {
         NSImage *hudImg = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", _imagesPath, filename]];
-        if (themeState)
+        if (isDarkTheme)
             hudImg = [hudImg imageByInvertingColors];
-        NSColor *textColor = (themeState) ? [NSColor whiteColor] : [NSColor blackColor];
+        NSColor *textColor = (isDarkTheme) ? [NSColor whiteColor] : [NSColor blackColor];
 
         [_text setTextColor:textColor];
         [dictNSImages addObject:hudImg];
@@ -231,12 +160,13 @@ static BOOL isDarkModeEnabled(void)
     if (tsval || action == kBezelActionEject)
     {
         [_text setStringValue:tsval];
-        [_tabView selectLastTabViewItem:nil];
+        [_text setHidden:NO];
+        [_slider setDoubleValue:0];
     }
     else
     {
         [_slider setEnabled:max > 0 && action != kBezelActionKeyBrightness && action != kBezelActionKeyBrightnessOff];
-        [_tabView selectFirstTabViewItem:nil];
+        [_text setHidden:YES];
     }
 
     [_slider setMaxValue:max];
@@ -274,25 +204,12 @@ static BOOL isDarkModeEnabled(void)
     [self.window setCanBecomeVisibleWithoutLogin:YES];
     [self.window setLevel:kCGMaximumWindowLevel];
     [self.window setMovable:NO];
+
     [_slider setDoubleValue:0];
+    [_slider setTarget:self action:@selector(sliderAction:)];
     [_text setTextColor:[NSColor whiteColor]];
 
-    if (@available(macOS 10.10, *))
-    {
-        NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
-
-        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-        [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-        [vibrant setState:NSVisualEffectStateActive];
-        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
-        [self.window.contentView addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
-
-        _visualEffectView = vibrant;
-        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(adaptUI) name:@"AppleInterfaceThemeChangedNotification" object:nil];
-    }
-
-    _previousThemeState = isDarkModeEnabled();
-    [self adaptUI];
+    [self adaptUI:NO];
 
     [self setVolumeSoundPath:nil]; // set default value
 }
