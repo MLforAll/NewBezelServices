@@ -10,7 +10,7 @@
             <connections>
                 <outlet property="image" destination="NUi-iG-lDv" id="5Cd-M9-sTA"/>
                 <outlet property="slider" destination="2zS-Mu-QV1" id="QLg-ah-HeW"/>
-                <outlet property="text" destination="guv-S6-Ew1" id="9gi-cR-vvw"/>
+                <outlet property="text" destination="RcX-MI-Abu" id="OWm-Eh-d6i"/>
                 <outlet property="window" destination="6sC-Mk-lSW" id="wCk-yG-U68"/>
             </connections>
         </customObject>
@@ -19,34 +19,48 @@
         <window title="HUD" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="6sC-Mk-lSW" customClass="HUDWindow">
             <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES"/>
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" stationary="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="121" y="123" width="286" height="58"/>
+            <rect key="contentRect" x="100" y="685" width="286" height="45"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <value key="minSize" type="size" width="286" height="45"/>
+            <value key="maxSize" type="size" width="286" height="45"/>
             <view key="contentView" id="ehv-gB-q4f">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="58"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="41"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zS-Mu-QV1" customClass="HUDProgressView">
-                        <rect key="frame" x="0.0" y="0.0" width="286" height="58"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="2zS-Mu-QV1" customClass="HUDProgressView">
+                        <rect key="frame" x="0.0" y="0.0" width="286" height="41"/>
                     </customView>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-iG-lDv">
-                        <rect key="frame" x="-3" y="-3" width="64" height="59"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-iG-lDv">
+                        <rect key="frame" x="0.0" y="-4" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="6e6-tT-kvw"/>
+                            <constraint firstAttribute="width" secondItem="NUi-iG-lDv" secondAttribute="height" multiplier="1:1" id="c14-13-t0g"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Volume" id="i0n-ek-IiP"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guv-S6-Ew1">
-                        <rect key="frame" x="67" y="18" width="201" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="oYX-wh-vGx">
-                            <font key="font" metaFont="system" size="18"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RcX-MI-Abu">
+                        <rect key="frame" x="54" y="11" width="214" height="19"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="BqJ-sw-VNP">
+                            <font key="font" metaFont="system" size="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="NUi-iG-lDv" firstAttribute="leading" secondItem="ehv-gB-q4f" secondAttribute="leading" id="2bx-az-ZcU"/>
+                    <constraint firstAttribute="bottom" secondItem="2zS-Mu-QV1" secondAttribute="bottom" id="45N-ty-nah"/>
+                    <constraint firstItem="NUi-iG-lDv" firstAttribute="top" secondItem="ehv-gB-q4f" secondAttribute="top" id="ERH-Vf-ZnM"/>
+                    <constraint firstAttribute="trailing" secondItem="2zS-Mu-QV1" secondAttribute="trailing" id="Ms5-ft-iPe"/>
+                    <constraint firstAttribute="bottom" secondItem="NUi-iG-lDv" secondAttribute="bottom" constant="-4" id="NFM-XX-JLQ"/>
+                    <constraint firstItem="RcX-MI-Abu" firstAttribute="centerY" secondItem="ehv-gB-q4f" secondAttribute="centerY" id="V6v-iR-H7A"/>
+                    <constraint firstItem="RcX-MI-Abu" firstAttribute="leading" secondItem="NUi-iG-lDv" secondAttribute="trailing" constant="11" id="cbt-nC-r3Z"/>
+                    <constraint firstAttribute="trailing" secondItem="RcX-MI-Abu" secondAttribute="trailing" constant="20" id="d50-pB-Gry"/>
+                    <constraint firstItem="2zS-Mu-QV1" firstAttribute="leading" secondItem="ehv-gB-q4f" secondAttribute="leading" id="iJ4-zq-RrU"/>
+                    <constraint firstItem="2zS-Mu-QV1" firstAttribute="top" secondItem="ehv-gB-q4f" secondAttribute="top" id="uu9-qS-R3a"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="111" y="-75"/>
+            <point key="canvasLocation" x="111" y="-75.5"/>
         </window>
         <progressIndicator maxValue="100" doubleValue="50" style="bar" id="Zsp-hj-r30">
             <rect key="frame" x="0.0" y="0.0" width="100" height="20"/>

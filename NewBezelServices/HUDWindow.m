@@ -33,4 +33,36 @@
     [super setContentView:contentView];
 }
 
+- (void)setFrameOrigin:(NSPoint)point
+{
+    if (_animating)
+        return ;
+    [super setFrameOrigin:point];
+}
+
+- (void)makeKeyAndOrderFront:(id)sender
+{
+    if (self.visible)
+    {
+        [super makeKeyAndOrderFront:sender];
+        return ;
+    }
+
+    const NSRect destRect = self.frame;
+
+    [self setAlphaValue:0];
+    [self setFrameOrigin:NSMakePoint(destRect.origin.x, self.screen.frame.size.height + destRect.size.height)];
+    //[self setFrame:NSMakeRect(destRect.origin.x + destRect.size.width / 4, self.screen.frame.size.height + destRect.size.height, destRect.size.width / 2, destRect.size.height / 2) display:YES];
+
+    [super makeKeyAndOrderFront:sender];
+
+    _animating = YES;
+    [NSAnimationContext beginGrouping];
+    [NSAnimationContext.currentContext setDuration:0.5];
+    [NSAnimationContext.currentContext setCompletionHandler:^{ self->_animating = NO; }];
+    [self.animator setAlphaValue:1];
+    [self.animator setFrame:destRect display:NO];
+    [NSAnimationContext endGrouping];
+}
+
 @end

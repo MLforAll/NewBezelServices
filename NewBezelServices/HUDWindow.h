@@ -9,5 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface HUDWindow : NSPanel
+{
+    BOOL _animating;
+}
 
 @end

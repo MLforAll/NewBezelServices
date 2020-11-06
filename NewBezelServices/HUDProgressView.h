@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     NSView *_foreground, *_background;
     double _delta;
-    
+
     id _target;
     SEL _action;
 }

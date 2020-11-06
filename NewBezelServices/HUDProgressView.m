@@ -15,7 +15,7 @@
 - (NSView *)getVibrantView:(BOOL)foreground
 {
     NSRect rect = NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height);
-    
+
     if (@available(macOS 10.10, *))
     {
         NSVisualEffectView *vibrant = [[NSVisualEffectView alloc] initWithFrame:rect];
@@ -36,6 +36,9 @@
 - (void)scrollWheel:(NSEvent *)event
 {
     [super scrollWheel:event];
+
+    if (!_enabled)
+        return ;
 
     double delta = _delta + event.deltaX / self.frame.size.width;
     [self setDoubleValue:delta];
