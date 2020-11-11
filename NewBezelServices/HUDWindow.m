@@ -48,7 +48,7 @@
         return ;
     }
 
-    const NSRect destRect = self.frame;
+    NSRect destRect = self.frame;
 
     [self setAlphaValue:0];
     [self setFrameOrigin:NSMakePoint(destRect.origin.x, self.screen.frame.size.height + destRect.size.height)];
@@ -61,6 +61,27 @@
     [NSAnimationContext.currentContext setDuration:0.5];
     [NSAnimationContext.currentContext setCompletionHandler:^{ self->_animating = NO; }];
     [self.animator setAlphaValue:1];
+    [self.animator setFrame:destRect display:NO];
+    [NSAnimationContext endGrouping];
+}
+
+- (void)close
+{
+    NSRect backupRect = self.frame;
+
+    NSRect destRect = backupRect;
+    destRect.origin.y = self.screen.frame.size.height + destRect.size.height;
+
+    _animating = YES;
+    [NSAnimationContext beginGrouping];
+    [NSAnimationContext.currentContext setDuration:0.25];
+    [NSAnimationContext.currentContext setCompletionHandler:^{
+        [super close];
+        [self setAlphaValue:1];
+        [self setFrame:backupRect display:NO];
+        self->_animating = NO;
+    }];
+    [self.animator setAlphaValue:0];
     [self.animator setFrame:destRect display:NO];
     [NSAnimationContext endGrouping];
 }
