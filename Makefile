@@ -1,11 +1,14 @@
 # Config
 NAME := NewBezelServices.app
 INSTALL_ROOT := /Library/Services
+LOCALINSTALL_ROOT := ${HOME}/Library/Services
 AGENT := com.mlforall.NewBezelServices.plist
 
 # Auto
 INSTALL_PATH := $(INSTALL_ROOT)/$(NAME)
+LOCALINSTALL_PATH := $(LOCALINSTALL_ROOT)/$(NAME)
 AGENT_PATH := /Library/LaunchAgents/$(AGENT)
+LOCALAGENT_PATH := ${HOME}/Library/LaunchAgents/$(AGENT)
 CONSOLE_USER := $(shell stat -f '%Su' /dev/console)
 
 all: release
@@ -30,10 +33,21 @@ install: mustroot
 	chown root:wheel "$(AGENT_PATH)"
 	su "$(CONSOLE_USER)" -c 'launchctl load "$(AGENT_PATH)"'
 
+localinstall:
+	@ [ -d "$(LOCALINSTALL_ROOT)" ] || mkdir -p "$(LOCALINSTALL_ROOT)"
+	launchctl unload "$(LOCALAGENT_PATH)"
+	rm -rf "$(LOCALINSTALL_PATH)" "$(LOCALAGENT_PATH)"
+	cp -R "build/Release/$(NAME)" "$(LOCALINSTALL_ROOT)"
+	cp "$(AGENT)" "$(LOCALAGENT_PATH)"
+	/usr/libexec/PlistBuddy -c "Set :Program $(LOCALINSTALL_PATH)/Contents/MacOS/NewBezelServices" "$(LOCALAGENT_PATH)"
+	chmod 0644 "$(LOCALAGENT_PATH)"
+	launchctl load "$(LOCALAGENT_PATH)"
+
 clean:
 	rm -rf build
+
 fclean: clean
 
 re: clean all
 
-.PHONY: release debug mustroot install clean fclean re
+.PHONY: release debug mustroot install localinstall clean fclean re
