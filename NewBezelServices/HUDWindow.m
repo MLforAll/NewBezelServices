@@ -51,7 +51,7 @@
     NSRect destRect = self.frame;
 
     [self setAlphaValue:0];
-    [self setFrameOrigin:NSMakePoint(destRect.origin.x, self.screen.frame.size.height + destRect.size.height)];
+    [self setFrameOrigin:NSMakePoint(destRect.origin.x, self.screen.frame.origin.y + self.screen.frame.size.height + destRect.size.height)];
     //[self setFrame:NSMakeRect(destRect.origin.x + destRect.size.width / 4, self.screen.frame.size.height + destRect.size.height, destRect.size.width / 2, destRect.size.height / 2) display:YES];
 
     [super makeKeyAndOrderFront:sender];
@@ -70,7 +70,7 @@
     NSRect backupRect = self.frame;
 
     NSRect destRect = backupRect;
-    destRect.origin.y = self.screen.frame.size.height + destRect.size.height;
+    destRect.origin.y = self.screen.frame.origin.y + self.screen.frame.size.height + destRect.size.height;
 
     _animating = YES;
     [NSAnimationContext beginGrouping];
