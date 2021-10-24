@@ -73,7 +73,7 @@
         return ;
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self->_hudCtrl showHUDForAction:action sliderFilled:filled sliderMax:locked ? 0.0f : total textStringValue:nil];
+        [self->_hudCtrl showHUDForAction:action sliderFilled:(double)filled / (double)total sliderMax:locked ? 0.0f : 1.0f textStringValue:nil];
     });
 }
 
