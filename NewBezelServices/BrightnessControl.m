@@ -9,6 +9,7 @@
 // Almost completely from: http://mattdanger.net/2008/12/adjust-mac-os-x-display-brightness-from-the-terminal
 
 #import "BrightnessControl.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 #define kMaxDisplays		16
 #define kDisplayBrightness	(CFSTR(kIODisplayBrightnessKey))
