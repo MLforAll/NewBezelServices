@@ -18,6 +18,8 @@
         self.styleMask |= NSWindowStyleMaskBorderless;
         [self setOpaque:NO];
         [self setBackgroundColor:[NSColor clearColor]];
+        if (@available(macOS 13.0, *))
+            self.animationBehavior = NSWindowAnimationBehaviorUtilityWindow;
         if (@available(macOS 10.9, *))
             [self setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameAqua]];
     }
@@ -67,6 +69,12 @@
 
 - (void)close
 {
+    if (@available(macOS 13.0, *))
+    {
+        [super close];
+        return ;
+    }
+
     NSRect backupRect = self.frame;
 
     NSRect destRect = backupRect;
